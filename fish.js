@@ -45,3 +45,12 @@ function fish(c) {
 		this.shape.y += pixels*Math.sin(this.shape.rotation * Math.PI / 180);
 	}
 }
+
+function mate(momma, pappa) {
+	var split = Math.floor(Math.random() * X.length);
+	
+	var X = momma.chromosome.slice(0, split);
+	var Y = pappa.chromosome.slice(split);
+	
+	return new Fish(X.concat(Y));
+}
