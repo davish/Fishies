@@ -4,7 +4,7 @@
  * length, width, tailLength, tailWidth, eye, bodyH, bodyS, bodyL, eyeH, eyeS, eyeL
  * 
  */
-function fish(c) {
+function Fish(c) {
 	this.chromosome = c;
 	
 	this.length = c[0];

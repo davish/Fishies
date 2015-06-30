@@ -1,13 +1,13 @@
 var stage, allFish;
 var stageHeight = 600, stageWidth = 800;
-var variance = 25;
+var variance = 25, numberOfFish = 50;
 function init() {
 	stage = new createjs.Stage("demoCanvas");
 	var background = new createjs.Shape();
 	background.graphics.beginFill("PaleTurquoise").drawRect(0, 0, stageWidth, stageHeight);
 	stage.addChild(background);
-	allFish = new Array();
-	for (var i = 0; i < 50; i++) {
+	allFish = [];
+	for (var i = 0; i < numberOfFish; i++) {
 		var newFish = new fish(50*randomWithinPercent(variance), 20*randomWithinPercent(variance), 5*randomWithinPercent(variance), 30*randomWithinPercent(variance), 2*randomWithinPercent(variance), 360*Math.random(), 100*Math.random(), 100*Math.random(), 360*Math.random(), 100*Math.random(), 100*Math.random());
 		newFish.shape.x = stageWidth / 2;
 		newFish.shape.y = stageHeight / 2;
@@ -65,7 +65,6 @@ function fish(length, width, tailLength, tailWidth, eye, bodyH, bodyS, bodyL, ey
 			max += 360;
 		}
 		this.shape.rotation = (Math.random() * (max - min) + min) % 360;
-		//console.log(this.shape.rotation);
 	};
 	this.move = function(pixels) {
 		this.shape.x += pixels*Math.cos(this.shape.rotation * Math.PI / 180);
@@ -73,11 +72,8 @@ function fish(length, width, tailLength, tailWidth, eye, bodyH, bodyS, bodyL, ey
 	};
 	this.kill = function(){
 		this.dead = true;
+		this.shape.visible = false;
 	};
-
-	//return {
-	//	kill: kill
-	//}
 }
 var nextNextGaussian;
 var haveNextNextGaussian = false;
