@@ -1,10 +1,17 @@
+let PIXI = require('pixi.js');
+let $ = require('jquery');
+
 class Graphics {
   constructor(aState){
-    this.stage = new createjs.Stage('canvas');
-    let background = new createjs.Shape();
-  	background.graphics.beginFill("PaleTurquoise").drawRect(0, 0, 640, 480);
-  	stage.addChild(background);
+    this.renderer = PIXI.WebGLRenderer(800, 600);
+    $('#canvas').append(this.renderer.view);
+    this.stage = new PIXI.Container();
     this.state = aState;
+    this.obj = [];
+  }
+
+  render() {
+    this.renderer.render(this.stage);
   }
 }
 

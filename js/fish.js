@@ -5,6 +5,10 @@ class Fish {
 			r: 0,
 			t: 0
 		};
+		this.position = {
+			x: 0,
+			y: 0
+		};
 		//this.graphics = aGraphics; encapsulate fish by graphics
 	}
 
