@@ -18,7 +18,7 @@ function Fish(c) {
 	this.graphics.beginStroke(this.eyeColor).beginFill(this.color).moveTo(-this.length/4 *(1+Math.sqrt(2)), -this.width*Math.sqrt(2)/4);
 	this.graphics.lineTo(-0.75*this.length - this.tailLength, -this.tailWidth/2).lineTo(-0.75*this.length, 0).lineTo(-0.75*this.length - this.tailLength, this.tailWidth/2).lineTo(-this.length/4 *(1+Math.sqrt(2)), this.width*Math.sqrt(2)/4).closePath;
 	this.graphics.beginFill(this.color).drawEllipse(-0.75 * this.length, -0.5 * this.width, this.length, this.width);
-	this.graphics.beginFill(this.eyeColor).drawCircle(0, 0, eye);
+	this.graphics.beginFill(this.eyeColor).drawCircle(0, 0, this.eye);
 	this.shape = new createjs.Shape(this.graphics);
 	this.direct = function() {
 		var min = 0, max = 360;

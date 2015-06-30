@@ -8,7 +8,8 @@ function init() {
 	stage.addChild(background);
 	allFish = [];
 	for (var i = 0; i < numberOfFish; i++) {
-		var newFish = new fish(50*randomWithinPercent(variance), 20*randomWithinPercent(variance), 5*randomWithinPercent(variance), 30*randomWithinPercent(variance), 2*randomWithinPercent(variance), 360*Math.random(), 100*Math.random(), 100*Math.random(), 360*Math.random(), 100*Math.random(), 100*Math.random());
+		var chromosome = [50*randomWithinPercent(variance), 20*randomWithinPercent(variance), 5*randomWithinPercent(variance), 30*randomWithinPercent(variance), 2*randomWithinPercent(variance), 360*Math.random(), 100*Math.random(), 100*Math.random(), 360*Math.random(), 100*Math.random(), 100*Math.random()];
+		var newFish = new Fish(chromosome);
 		newFish.shape.x = stageWidth / 2;
 		newFish.shape.y = stageHeight / 2;
 		stage.addChild(newFish.shape);
@@ -31,49 +32,6 @@ function tick(event) {
 		}
 		eachFish.move(event.delta / 1000 * 100);
 	}
-}
-function fish(length, width, tailLength, tailWidth, eye, bodyH, bodyS, bodyL, eyeH, eyeS, eyeL) {
-	this.length = length;
-	this.width = width;
-	this.tailLength = tailLength;
-	this.tailWidth = tailWidth;
-	this.eye = eye;
-	this.color = "hsl(" + bodyH % 360 + ", " + bodyS + "%, " + bodyL + "%)";
-	this.eyeColor = "hsl(" + eyeH % 360 + ", " + eyeS + "%, " + eyeL + "%)";
-	this.graphics = new createjs.Graphics();
-	this.graphics.beginStroke(this.eyeColor).beginFill(this.color).moveTo(-this.length/4 *(1+Math.sqrt(2)), -this.width*Math.sqrt(2)/4);
-	this.graphics.lineTo(-0.75*this.length - this.tailLength, -this.tailWidth/2).lineTo(-0.75*this.length, 0).lineTo(-0.75*this.length - this.tailLength, this.tailWidth/2).lineTo(-this.length/4 *(1+Math.sqrt(2)), this.width*Math.sqrt(2)/4).closePath;
-	this.graphics.beginFill(this.color).drawEllipse(-0.75 * this.length, -0.5 * this.width, this.length, this.width);
-	this.graphics.beginFill(this.eyeColor).drawCircle(0, 0, eye);
-	this.shape = new createjs.Shape(this.graphics);
-	this.dead = false;
-	this.direct = function() {
-		var min = 0, max = 360;
-		if (this.shape.x <= 0) {
-			min = 270;
-			max = 90;
-		} else if (this.shape.x >= stageHeight) {
-			min = 90;
-			max = 270;
-		}
-		if (this.shape.y <= 0) {
-			max = Math.min(180, max);
-		} else if (this.shape.y >= stageHeight) {
-			min = Math.max(180, min);
-		}
-		if (max < min) {
-			max += 360;
-		}
-		this.shape.rotation = (Math.random() * (max - min) + min) % 360;
-	};
-	this.move = function(pixels) {
-		this.shape.x += pixels*Math.cos(this.shape.rotation * Math.PI / 180);
-		this.shape.y += pixels*Math.sin(this.shape.rotation * Math.PI / 180);
-	};
-	this.kill = function(){
-		this.dead = true;
-		this.shape.visible = false;
-	};
 }
 var nextNextGaussian;
 var haveNextNextGaussian = false;
