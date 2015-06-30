@@ -1,16 +1,24 @@
 var stage, allFish;
-var variance = 25;
+var stageHeight = 600, stageWidth = 800;
+var variance = 25, numberOfFish = 50;
 function init() {
 	stage = new createjs.Stage("demoCanvas");
 	var background = new createjs.Shape();
-	background.graphics.beginFill("PaleTurquoise").drawRect(0, 0, 640, 480);
+	background.graphics.beginFill("PaleTurquoise").drawRect(0, 0, stageWidth, stageHeight);
 	stage.addChild(background);
-	allFish = new Array();
-	for (var i = 0; i < 10; i++) {
-		allFish[i] = new fish(50*randomWithinPercent(variance), 20*randomWithinPercent(variance), 5*randomWithinPercent(variance), 30*randomWithinPercent(variance), 2*randomWithinPercent(variance), 360*Math.random(), 100*Math.random(), 100*Math.random(), 360*Math.random(), 100*Math.random(), 100*Math.random());
-		allFish[i].shape.x = 320;
-		allFish[i].shape.y = 240;
-		stage.addChild(allFish[i].shape);
+	allFish = [];
+	for (var i = 0; i < numberOfFish; i++) {
+		var chromosome = [50*randomWithinPercent(variance), 20*randomWithinPercent(variance), 5*randomWithinPercent(variance), 30*randomWithinPercent(variance), 2*randomWithinPercent(variance), 360*Math.random(), 100*Math.random(), 100*Math.random(), 360*Math.random(), 100*Math.random(), 100*Math.random()];
+		var newFish = new Fish(chromosome);
+		newFish.shape.x = stageWidth / 2;
+		newFish.shape.y = stageHeight / 2;
+		stage.addChild(newFish.shape);
+		newFish.shape.on("click", (function(aFish){
+			return function(event) {
+				aFish.kill();
+			}
+		})(newFish));
+		allFish[i] = newFish;
 	}
 	createjs.Ticker.on("tick", tick);
 	createjs.Ticker.setFPS(60);
@@ -18,52 +26,23 @@ function init() {
 function tick(event) {
 	stage.update(event);
 	for (var i = 0; i < allFish.length; i++) {
-		var eachFish = allFish[i];
-		if (eachFish.shape.x <= 0 || eachFish.shape.x >= 640 || eachFish.shape.y <= 0 || eachFish.shape.y >= 480 || Math.random() < 1/30) {
-			eachFish.direct();
+		if (allFish[i] != null) {
+			var eachFish = allFish[i];
+			if (eachFish.dead) {
+				if (eachFish.shape.alpha > 0) {
+					eachFish.shape.alpha -= 0.02;
+				} else {
+					eachFish.visible = false;
+					allFish[i] = null;
+				}
+			} else {
+				if (eachFish.shape.x <= 0 || eachFish.shape.x >= stageWidth || eachFish.shape.y <= 0 || eachFish.shape.y >= stageHeight || Math.random() < 1/30) {
+					eachFish.direct();
+				}
+				eachFish.move(event.delta / 1000 * 100);
+			}
 		}
-		eachFish.move(event.delta / 1000 * 100);
 	}
-}
-function fish(length, width, tailLength, tailWidth, eye, bodyH, bodyS, bodyL, eyeH, eyeS, eyeL) {
-	this.length = length;
-	this.width = width;
-	this.tailLength = tailLength;
-	this.tailWidth = tailWidth;
-	this.eye = eye;
-	this.color = "hsl(" + bodyH % 360 + ", " + bodyS + "%, " + bodyL + "%)";
-	this.eyeColor = "hsl(" + eyeH % 360 + ", " + eyeS + "%, " + eyeL + "%)";
-	this.graphics = new createjs.Graphics();
-	this.graphics.beginStroke(this.eyeColor).beginFill(this.color).moveTo(-this.length/4 *(1+Math.sqrt(2)), -this.width*Math.sqrt(2)/4);
-	this.graphics.lineTo(-0.75*this.length - this.tailLength, -this.tailWidth/2).lineTo(-0.75*this.length, 0).lineTo(-0.75*this.length - this.tailLength, this.tailWidth/2).lineTo(-this.length/4 *(1+Math.sqrt(2)), this.width*Math.sqrt(2)/4).closePath;
-	this.graphics.beginFill(this.color).drawEllipse(-0.75 * this.length, -0.5 * this.width, this.length, this.width);
-	this.graphics.beginFill(this.eyeColor).drawCircle(0, 0, eye);
-	this.shape = new createjs.Shape(this.graphics);
-	this.direct = function() {
-		var min = 0, max = 360;
-		if (this.shape.x <= 0) {
-			min = 270;
-			max = 90;
-		} else if (this.shape.x >= 640) {
-			min = 90;
-			max = 270;
-		}
-		if (this.shape.y <= 0) {
-			max = Math.min(180, max);
-		} else if (this.shape.y >= 480) {
-			min = Math.max(180, min);
-		}
-		if (max < min) {
-			max += 360;
-		}
-		this.shape.rotation = (Math.random() * (max - min) + min) % 360;
-		//console.log(this.shape.rotation);
-	}
-	this.move = function(pixels) {
-		this.shape.x += pixels*Math.cos(this.shape.rotation * Math.PI / 180);
-		this.shape.y += pixels*Math.sin(this.shape.rotation * Math.PI / 180);
-	}
-
 }
 var nextNextGaussian;
 var haveNextNextGaussian = false;
