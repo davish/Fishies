@@ -1,16 +1,23 @@
 var stage, allFish;
+var stageHeight = 600, stageWidth = 800;
 var variance = 25;
 function init() {
 	stage = new createjs.Stage("demoCanvas");
 	var background = new createjs.Shape();
-	background.graphics.beginFill("PaleTurquoise").drawRect(0, 0, 640, 480);
+	background.graphics.beginFill("PaleTurquoise").drawRect(0, 0, stageWidth, stageHeight);
 	stage.addChild(background);
 	allFish = new Array();
-	for (var i = 0; i < 10; i++) {
-		allFish[i] = new fish(50*randomWithinPercent(variance), 20*randomWithinPercent(variance), 5*randomWithinPercent(variance), 30*randomWithinPercent(variance), 2*randomWithinPercent(variance), 360*Math.random(), 100*Math.random(), 100*Math.random(), 360*Math.random(), 100*Math.random(), 100*Math.random());
-		allFish[i].shape.x = 320;
-		allFish[i].shape.y = 240;
-		stage.addChild(allFish[i].shape);
+	for (var i = 0; i < 50; i++) {
+		var newFish = new fish(50*randomWithinPercent(variance), 20*randomWithinPercent(variance), 5*randomWithinPercent(variance), 30*randomWithinPercent(variance), 2*randomWithinPercent(variance), 360*Math.random(), 100*Math.random(), 100*Math.random(), 360*Math.random(), 100*Math.random(), 100*Math.random());
+		newFish.shape.x = stageWidth / 2;
+		newFish.shape.y = stageHeight / 2;
+		stage.addChild(newFish.shape);
+		newFish.shape.on("click", (function(aFish){
+			return function(event) {
+				aFish.kill();
+			}
+		})(newFish));
+		allFish[i] = newFish;
 	}
 	createjs.Ticker.on("tick", tick);
 	createjs.Ticker.setFPS(60);
@@ -19,7 +26,7 @@ function tick(event) {
 	stage.update(event);
 	for (var i = 0; i < allFish.length; i++) {
 		var eachFish = allFish[i];
-		if (eachFish.shape.x <= 0 || eachFish.shape.x >= 640 || eachFish.shape.y <= 0 || eachFish.shape.y >= 480 || Math.random() < 1/30) {
+		if (eachFish.shape.x <= 0 || eachFish.shape.x >= stageWidth || eachFish.shape.y <= 0 || eachFish.shape.y >= stageHeight || Math.random() < 1/30) {
 			eachFish.direct();
 		}
 		eachFish.move(event.delta / 1000 * 100);
@@ -39,18 +46,19 @@ function fish(length, width, tailLength, tailWidth, eye, bodyH, bodyS, bodyL, ey
 	this.graphics.beginFill(this.color).drawEllipse(-0.75 * this.length, -0.5 * this.width, this.length, this.width);
 	this.graphics.beginFill(this.eyeColor).drawCircle(0, 0, eye);
 	this.shape = new createjs.Shape(this.graphics);
+	this.dead = false;
 	this.direct = function() {
 		var min = 0, max = 360;
 		if (this.shape.x <= 0) {
 			min = 270;
 			max = 90;
-		} else if (this.shape.x >= 640) {
+		} else if (this.shape.x >= stageHeight) {
 			min = 90;
 			max = 270;
 		}
 		if (this.shape.y <= 0) {
 			max = Math.min(180, max);
-		} else if (this.shape.y >= 480) {
+		} else if (this.shape.y >= stageHeight) {
 			min = Math.max(180, min);
 		}
 		if (max < min) {
@@ -58,12 +66,18 @@ function fish(length, width, tailLength, tailWidth, eye, bodyH, bodyS, bodyL, ey
 		}
 		this.shape.rotation = (Math.random() * (max - min) + min) % 360;
 		//console.log(this.shape.rotation);
-	}
+	};
 	this.move = function(pixels) {
 		this.shape.x += pixels*Math.cos(this.shape.rotation * Math.PI / 180);
 		this.shape.y += pixels*Math.sin(this.shape.rotation * Math.PI / 180);
-	}
-	
+	};
+	this.kill = function(){
+		this.dead = true;
+	};
+
+	//return {
+	//	kill: kill
+	//}
 }
 var nextNextGaussian;
 var haveNextNextGaussian = false;
