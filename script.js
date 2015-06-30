@@ -4,7 +4,7 @@ var variance = 25, numberOfFish = 50;
 function init() {
 	stage = new createjs.Stage("demoCanvas");
 	var background = new createjs.Shape();
-	background.graphics.beginFill("PaleTurquoise").drawRect(0, 0, stageWidth, stageHeight);
+	background.graphics.beginFill("#A4FFFF").drawRect(0, 0, stageWidth, stageHeight);
 	stage.addChild(background);
 	allFish = [];
 	for (var i = 0; i < numberOfFish; i++) {

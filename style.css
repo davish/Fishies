@@ -1,6 +1,52 @@
-canvas {
-	border:1px solid black;
+body {
+	margin: 0px;
+	font-family: sans-serif;
 }
-p {
-	color:red;
+canvas {
+	border:1px solid #006464;
+}
+header {
+	margin: 0px;
+	background-color: #006464;
+	color: #A4FFFF;
+	text-align: center;
+	padding: 5px;
+}
+nav {
+	margin: 0px;
+	height: 26px;
+	background-color: #70FFFF;
+}
+section {
+    float:left;
+    padding:10px; 
+}
+footer {
+    background-color: #006464;
+    color: #A4FFFF;
+    clear: both;
+    text-align: center;
+    padding: 5px; 
+}
+ul {
+	margin: 0px;
+	padding: 0px;
+	height: 30px;
+	list-style-type: none;
+}
+li {
+	float:left;
+}
+a:link, a:visited {
+	display: block;
+	width: 200px;
+	color: #006464;
+	text-align: center;
+	padding: 4px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+a:hover, a:active {
+	background-color: #008282;
+	color: #A4FFFF;
 }
