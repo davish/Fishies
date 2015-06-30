@@ -1,0 +1,32 @@
+{
+  "name": "fish-tank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbh937/Fishies.git"
+  },
+  "author": "finn, davis, kevin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dbh937/Fishies/issues"
+  },
+  "homepage": "https://github.com/dbh937/Fishies#readme",
+  "devDependencies": {
+    "babelify": "^6.1.2",
+    "browser-sync": "^2.7.13",
+    "browserify": "^10.2.4",
+    "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "lodash": "^3.10.0"
+  }
+}
