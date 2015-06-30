@@ -26,11 +26,22 @@ function init() {
 function tick(event) {
 	stage.update(event);
 	for (var i = 0; i < allFish.length; i++) {
-		var eachFish = allFish[i];
-		if (eachFish.shape.x <= 0 || eachFish.shape.x >= stageWidth || eachFish.shape.y <= 0 || eachFish.shape.y >= stageHeight || Math.random() < 1/30) {
-			eachFish.direct();
+		if (allFish[i] != null) {
+			var eachFish = allFish[i];
+			if (eachFish.dead) {
+				if (eachFish.shape.alpha > 0) {
+					eachFish.shape.alpha -= 0.02;
+				} else {
+					eachFish.visible = false;
+					allFish[i] = null;
+				}
+			} else {
+				if (eachFish.shape.x <= 0 || eachFish.shape.x >= stageWidth || eachFish.shape.y <= 0 || eachFish.shape.y >= stageHeight || Math.random() < 1/30) {
+					eachFish.direct();
+				}
+				eachFish.move(event.delta / 1000 * 100);
+			}
 		}
-		eachFish.move(event.delta / 1000 * 100);
 	}
 }
 var nextNextGaussian;

@@ -20,6 +20,7 @@ function Fish(c) {
 	this.graphics.beginFill(this.color).drawEllipse(-0.75 * this.length, -0.5 * this.width, this.length, this.width);
 	this.graphics.beginFill(this.eyeColor).drawCircle(0, 0, this.eye);
 	this.shape = new createjs.Shape(this.graphics);
+	this.dead = false;
 	this.direct = function() {
 		var min = 0, max = 360;
 		if (this.shape.x <= 0) {
@@ -43,6 +44,9 @@ function Fish(c) {
 	this.move = function(pixels) {
 		this.shape.x += pixels*Math.cos(this.shape.rotation * Math.PI / 180);
 		this.shape.y += pixels*Math.sin(this.shape.rotation * Math.PI / 180);
+	}
+	this.kill = function() {
+		this.dead = true;
 	}
 }
 
