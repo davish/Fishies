@@ -63,7 +63,7 @@ function fish(length, width, tailLength, tailWidth, eye, bodyH, bodyS, bodyL, ey
 		this.shape.x += pixels*Math.cos(this.shape.rotation * Math.PI / 180);
 		this.shape.y += pixels*Math.sin(this.shape.rotation * Math.PI / 180);
 	}
-	
+
 }
 var nextNextGaussian;
 var haveNextNextGaussian = false;

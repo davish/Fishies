@@ -1,13 +1,13 @@
-let Fish = require('fish');
-let Chromosome = require('chromosome');
+let Fish = require('./fish');
+let Chromosome = require('./chromosome');
 
-class State() {
+class State {
   constructor() {
     this.fish = [];
     this.food = [];
 
     //temporary
-    fish.push(new Fish(new Chromosome()))
+    this.fish.push(new Fish(new Chromosome(1, 2, 3, 4)));
   }
 
   addFish(aFish) {
@@ -16,6 +16,14 @@ class State() {
 
   addFood(aFood) {
     food.push(aFood);
+  }
+
+  tick() {
+
+  }
+
+  toString() {
+
   }
 }
 

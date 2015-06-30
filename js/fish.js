@@ -5,9 +5,14 @@ class Fish {
 			r: 0,
 			t: 0
 		};
+		//this.graphics = aGraphics; encapsulate fish by graphics
 	}
 
 	tick() {
+
+	}
+
+	draw() {
 
 	}
 }
