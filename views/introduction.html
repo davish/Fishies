@@ -45,15 +45,18 @@
     <p>
       The user can interact with the fish in a variety of ways. The user can
       kill unwanted fish by left-clicking, and can place food in the bowl with a
-      right-click. Note that if "Generation Mode" is set to "iterative," then
+      right-click. Note that if "Generation Mode" is set to "Iterative," then
       each generation will end when either all the food runs out or half of the
       population dies.
     </p>
     <h3>Fitness Score</h3>
     <p>
       Each fish is given a "fitness score" to be used in the selection process.
-      The fitness score is based on how many energy points a fish has. Energy
-      points are gained when the fish eat food.
+      If "Generation Mode" is set to "Iterative," the fitness score is based on
+      how many energy points a fish has. Energy points are gained when the fish
+      eat food, and are lost when fish move. If "Generation Mode" is set to
+      "Continuous," then the fitness score is based on how long a particular
+      fish has been alive.
     </p>
   </section>
   <footer>

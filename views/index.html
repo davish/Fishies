@@ -31,30 +31,22 @@
 <aside>
 <form>
 <b>Population Size:</b>
-<input type="number" name="population" value="50" min="3" max="100">
-<br>
-<b>Selection Algorithm</b>
-<br>
-<input type="radio" name="selection" value="roulette" checked> Roulette
-<br>
-<input type="radio" name="selection" value="tournament"> Tournament
-<br>
-<input type="radio" name="selection" value="truncation"> Truncation
-<br>
+<input type="number" name="population" value="50" min="3" max="100"><br>
+<b>Generation Mode:</b><br>
+<input type="radio" name="generation" value="iterative" checked> Iterative<br>
+<input type="radio" name="generation" value="continuous"> Continuous<br>
+<b>Selection Algorithm</b><br>
+<input type="radio" name="selection" value="roulette" checked> Roulette<br>
+<input type="radio" name="selection" value="tournament"> Tournament<br>
+<input type="radio" name="selection" value="truncation"> Truncation<br>
 <b>Crossover Rate:</b>
-<input type="number" name="crossoverRate" value="70" min="0" max="100">%
-<br>
-<b>Crossover Technique</b>
-<br>
-<input type="radio" name="crossoverMethod" value="onePoint" checked> One-Point Crossover
-<br>
-<input type="radio" name="crossoverMethod" value="twoPoint"> Two-Point Crossover
-<br>
-<input type="radio" name="crossoverMethod" value="uniform"> Uniform Crossover
-<br>
+<input type="number" name="crossoverRate" value="70" min="0" max="100">%<br>
+<b>Crossover Technique</b><br>
+<input type="radio" name="crossoverMethod" value="onePoint" checked> One-Point Crossover<br>
+<input type="radio" name="crossoverMethod" value="twoPoint"> Two-Point Crossover<br>
+<input type="radio" name="crossoverMethod" value="uniform"> Uniform Crossover<br>
 <b>Mutation:</b>
-<input type="number" name="mutation" value="5" min="0" max="100">%
-<br>
+<input type="number" name="mutation" value="5" min="0" max="100">%<br>
 <b>Dynamic Mutation Rate:</b>
 <input type="checkbox" name="dynamicMutation" checked>
 </form>
