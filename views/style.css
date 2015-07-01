@@ -24,7 +24,7 @@ nav {
 section {
     float:left;
     padding:10px;
-	background-color: white;
+		min-height: 602px;
 	overflow: auto;
 }
 section.canvasHolder {
@@ -32,10 +32,9 @@ section.canvasHolder {
 	overflow: hidden;
 }
 aside {
-	background-color: white;
 	padding: 10px;
-	height: 602px;
 	overflow:auto;
+	min-width: 150px;
 }
 footer {
     background-color: #006464;
@@ -44,13 +43,17 @@ footer {
     text-align: center;
     padding: 10px;
 }
+div.content {
+	background-color: white;
+	min-height: 622px;
+	padding: 0px;
+}
 p {
 	font-size: large;
 }
 ul {
 	margin: 0px;
 	padding: 0px;
-	height: 30px;
 	list-style-type: none;
 }
 li {
@@ -58,7 +61,8 @@ li {
 }
 a:link, a:visited {
 	display: block;
-	width: 200px;
+	width: 150px;
+	background-color: #70FFFF;
 	color: #006464;
 	text-align: center;
 	padding: 4px;

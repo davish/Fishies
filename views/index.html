@@ -24,12 +24,13 @@
 </ul>
 </nav>
 
+<div class="content">
 <section class="canvasHolder">
 <canvas id="canvas" width="800" height="600"></canvas>
 </section>
 
 <aside>
-<form>
+<form onsubmit="return false">
 <b>Population Size:</b>
 <input type="number" name="population" value="50" min="3" max="100"><br>
 <b>Generation Mode:</b><br>
@@ -48,9 +49,11 @@
 <b>Mutation:</b>
 <input type="number" name="mutation" value="5" min="0" max="100">%<br>
 <b>Dynamic Mutation Rate:</b>
-<input type="checkbox" name="dynamicMutation" checked>
+<input type="checkbox" name="dynamicMutation" checked><br>
+<input type="submit" name="submit" value="New Population">
 </form>
 </aside>
+</div>
 
 <footer>
 Created by Finn Voichick, Kevin Wang, and Davis Haupt
