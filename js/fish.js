@@ -1,22 +1,12 @@
 class Fish {
-	constructor(aChromosome) {
+	constructor(aChromosome, aPosition = {x: 0, y:0}, aVelocity = {r: 0, t:0}) {
 		this.chromosome = aChromosome;
-		this.velocity = {
-			r: 0,
-			t: 0
-		};
-		this.position = {
-			x: 0,
-			y: 0
-		};
+		this.velocity = aVelocity;
+		this.position = aPosition;
 		//this.graphics = aGraphics; encapsulate fish by graphics
 	}
 
 	tick() {
-
-	}
-
-	draw() {
 
 	}
 }
