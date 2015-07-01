@@ -24,7 +24,7 @@ nav {
 section {
     float:left;
     padding:10px;
-		min-height: 602px;
+		min-height: 500px;
 	overflow: auto;
 }
 section.canvasHolder {
@@ -45,7 +45,6 @@ footer {
 }
 div.content {
 	background-color: white;
-	min-height: 622px;
 	padding: 0px;
 }
 p {
@@ -84,4 +83,7 @@ a.inline {
 a.inline:hover, a.inline:active {
 	text-decoration: underline;
 	color: #00FFFF;
+}
+br.clear {
+	clear: both;
 }
