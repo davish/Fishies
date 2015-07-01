@@ -34,24 +34,34 @@ function Darwin(fitness, mate, mutate, generateOrganism, simulate, popSize, surv
 		this.population.push(generateOrganism());
 	}
 }
-Darwin.prototype.step = function() {
-	this.simulate(this.population);
+Darwin.prototype.step = function(roundNum) {
+	this.simulate(this.population, roundNum);
 	var parents = this.successors(this.population);
-	var nextGen = [].concat(parents);
-	for (var i=0; i < (popSize - survivalRate); i++) {
-		// create a new organism from two random parents.
+	var nextGen = [];
+	while (nextGen.length < this.popSize) {
+		// create two new organisms from two random parents.
 		var nemo = this.mate(parents[Math.floor(Math.random() * parents.length)], parents[Math.floor(Math.random() * parents.length)]);
-		this.mutate(nemo);
-		nextGen.push(nemo);
+		if (typeof nemo.indexOf === "undefined")
+			this.mutate(nemo);
+		else {
+			for (var j=0; j < nemo.length; j++)
+				this.mutate(nemo[j]);
+		}
+		nextGen = nextGen.concat(nemo); // will push all elements, if by chance it is an array because of multiple children.
 	}
+	nextGen = nextGen.slice(0, 20);
 	this.population = nextGen;
 }
 Darwin.prototype.successors = function(pop) {
 	pop = [].concat(pop);
+	var f = this.fitness;
 	pop.sort(function(a, b) {
-		return this.fitness(a) - this.fitness(b);
+		return f(a) - f(b);
 	});
-	var parents = this.population.slice(0, survivalRate);
+	parents = [];
+	for (var i=0; i < this.survivalRate; i++)
+		parents.push(pop[i]);
+	return parents;
 }
 
 module.exports.Darwin = Darwin;
