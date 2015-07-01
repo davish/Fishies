@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Genetic Fishbowl</title>
+  <link rel="stylesheet" type="text/css" href="style.css"></link>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+  <script src="main.min.js"></script>
+</head>
+<body onload="init()">
+  <header>
+    <h1>The Genetic Fishbowl</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="./index.html">The Fishbowl</a></li>
+      <li><a href="./introduction.html">How to Play</a></li>
+      <li><a href="./fish.html">The Fish</a></li>
+      <li><a href="./selection.html">Selection</a></li>
+      <li><a href="./crossover.html">Crossover</a></li>
+      <li><a href="./mutation.html">Mutation</a></li>
+    </ul>
+  </nav>
+  <section>
+    <p>
+      The Genetic Fishbowl uses what is called a <i>genetic algorithm</i>, so
+      called because it emulates biological processes. Each fish has a
+      "chromosome." In biology, this chromosome would be a series of nitrogen
+      bases, but in our case, it's a series of values that affect a fish's
+      appearance and behavior. As some fish succeed and others die, the whole
+      population slowly evolves to adapt to the environment. In our simulation,
+      the system is interactive, so the user may "breed" fish if they so desire.
+      Here's an overview of the algorithm:
+    </p>
+    <h3>Initial population</h3>
+    <p>
+      At the beginning of the simulation, a population of fish is created, each
+      with a random chromosome. To learn more about the chromosomes, visit the
+      <a class="inline" href="./fish.html">Fish</a> page. The population size
+      can be customized in the settings panel. During this phase (and for each
+      generation), the bowl is also populated with food, proportional to the
+      population size. Each food pellet has 10 energy points.
+    </p>
+    <h3>User Interaction</h3>
+    <p>
+      The user can interact with the fish in a variety of ways. The user can
+      kill unwanted fish by left-clicking, and can place food in the bowl with a
+      right-click. Note that if "Generation Mode" is set to "iterative," then
+      each generation will end when either all the food runs out or half of the
+      population dies.
+    </p>
+    <h3>Fitness Score</h3>
+    <p>
+      Each fish is given a "fitness score" to be used in the selection process.
+      The fitness score is based on how many energy points a fish has. Energy
+      points are gained when the fish eat food.
+    </p>
+  </section>
+  <footer>
+    Created by Finn Voichick, Kevin Wang, and Davis Haupt
+  </footer>
+</body>
+</html>
