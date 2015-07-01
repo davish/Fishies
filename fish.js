@@ -51,7 +51,7 @@ function Fish(c) {
 }
 
 function mate(momma, pappa) {
-	var split = Math.floor(Math.random() * X.length);
+	var split = Math.floor(Math.random() * momma.length);
 	
 	var X = momma.chromosome.slice(0, split);
 	var Y = pappa.chromosome.slice(split);
