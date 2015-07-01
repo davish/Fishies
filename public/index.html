@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Fish</title>
-    <link rel="stylesheet" type="text/css" href="style.css"></link>
-    <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
-    <script src="main.min.js"></script>
-  </head>
-  <body>
-    <canvas id="canvas" width="640" height="480"></canvas>
-  </body>
+<head>
+<title>The Genetic Fishbowl</title>
+<link rel="stylesheet" type="text/css" href="style.css"></link>
+<script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+<script src="main.min.js"></script>
+</head>
+<body onload="init()">
+
+<header>
+<h1>The Genetic Fishbowl</h1>
+</header>
+
+<nav>
+<ul>
+	<li><a href="./index.html">The Fishbowl</a></li>
+	<li><a href="./algorithm">The Algorithm</a></li>
+	<li><a href="./faq">FAQ</a></li>
+</ul>
+</nav>
+
+<section>
+<canvas id="canvas" width="800" height="600"></canvas>
+</section>
+
+<aside>
+<form>
+	Population Size: <input type="number" value="50" min="3" max="100">
+</form>
+</aside>
+
+<footer>
+Created by Finn Voichick, Kevin Wang, and Davis Haupt
+</footer>
+</body>
 </html>
