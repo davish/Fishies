@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Genetic Fishbowl</title>
+  <link rel="stylesheet" type="text/css" href="style.css"></link>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+  <script src="main.min.js"></script>
+</head>
+<body onload="init()">
+  <header>
+    <h1>The Genetic Fishbowl</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="./index.html">The Fishbowl</a></li>
+      <li><a href="./introduction.html">How to Play</a></li>
+      <li><a href="./fish.html">The Fish</a></li>
+      <li><a href="./selection.html">Selection</a></li>
+      <li><a href="./crossover.html">Crossover</a></li>
+      <li><a href="./mutation.html">Mutation</a></li>
+    </ul>
+  </nav>
+  <div class="content">
+    <section>
+      <p>
+        The Genetic Fishbowl uses what is called a
+        <i><a class="inline" href="https://en.wikipedia.org/wiki/Genetic_algorithm">genetic algorithm</a></i>,
+        so-called because it emulates certain biological processes. Each of the
+        fish in the fishbowl has a single
+        "<a class="inline" href="https://en.wikipedia.org/wiki/Chromosome">chromosome</a>."
+        In biology, a chromosome is a series of chemically bonded nitrogen bases,
+        but in this case, a fish’s chromosome is simply a series of values that
+        affect a fish's appearance and behavior. Some fish survive while others do
+        not, and the fish that are better-suited to the environment pass on their
+        “genes” to the next generation, so the population slowly evolves to adapt
+        to the environment. In our simulation, the system is interactive, so the
+        user may kill or help fish if desired, making this a simulation of not
+        only natural selection, but selective breeding as well. There are two
+        modes of fish generation:
+      </p>
+      <h3>Iterative</h3>
+      <p>
+        This is the algorithm typically used in genetic algorithms. In this mode,
+        a generation of fish is created and then competes against the other fish.
+        Each of the fish is given a fitness score (based on the amount of food
+        consumed), and at the end of the generation, fish with higher fitness
+        scores are more likely to pass on their genes to the next generation.
+      </p>
+      <h3>Continuous</h3>
+      <p>
+        A more unconventional approach to genetic algorithms (but more similar to
+        biological evolution), this algorithm does not divide the simulation into
+        generations. Instead, gameplay is continuous, and whenever a fish dies, a
+        new fish is created. In this case, the fitness score is based on the
+        amount of time a fish has been alive.
+      </p>
+      <p>The entire algorithm can be summarized as follows:</p>
+      <h3>Initial population</h3>
+      <p>
+        At the beginning of the simulation, a population of fish is created, each
+        with a random chromosome. The population size can be customized in the
+        settings panel. At this stage (and also at the beginning of each
+        generation, if the game is in iterative generation mode), the bowl is also
+        populated with food for the fish. The amount of food is proportional to
+        the population size.
+      </p>
+      <h3>User Interaction</h3>
+      <p>
+        The user can interact with the fish in two ways. The user can kill
+        unwanted fish by left-clicking, and can place food in the bowl with a
+        right-click. Note that if you are in iterative generation mode, the next
+        generation will begin when either half of the fish die or all of the food
+        runs out. The user can thus kill fish to shorten a generation, or add food
+        to prolong it. If in continuous generation mode, the user can cause new
+        fish to spawn by killing unwanted fish.
+      </p>
+      <h3>Fitness Score</h3>
+      <p>
+        Each fish is given a
+        "<a class="inline" href="https://en.wikipedia.org/wiki/Fitness_function">fitness score</a>"
+        to be used in the selection process. If you are in iterative generation
+        mode, the fitness score is based on how many energy points a fish has.
+        Energy points are gained when the fish eat food, and are lost when fish
+        move. If you are in continuous generation mode, a fish's fitness score is
+        based on how long it has been alive.
+      </p>
+      <h3>Selection</h3>
+      <p>
+        A fish is selected for the next generation based on its fitness score.
+        There are three methods of selection; they are discussed in depth on the
+        <a class="inline" href="./selection.html">Selection</a> page. In iterative
+        selection mode, a population of fish are selected for each generation. In
+        continuous selection mode, whenever a fish dies, two fish are selected to
+        be parents of a new fish.
+      </p>
+      <h3>Crossover</h3>
+      <p>
+        After fish are selected and paired, their chromosomes are combined to
+        create a new fish. There are three methods of crossover discussed in depth
+        on the <a class="inline" href="./crossover.html">Crossover</a> page. Note
+        that there is not always a crossover, and the probability of there being a
+        crossover is the "Crossover Rate" setting.
+      </p>
+      <h3>Mutation</h3>
+      <p>
+        In biological reproduction, mutation of genes often occurs during the
+        crossover phase, but the two processes are separated here for the sake of
+        simplicity. While mutation of DNA base pairs involves very low-level
+        manipulation, our algorithm directly modifies the numerical chromosome
+        values. For each new fish, each of the chromosome values is very slightly
+        altered before the new fish is created. Read more on the
+        <a class="inline" href="./mutation.html">Mutation</a> page.
+      </p>
+    </section>
+    <br class="clear">
+  </div>
+  <footer>
+    Created by Finn Voichick, Kevin Wang, and Davis Haupt<br>
+    This project is <a class="inlineLight" href="https://github.com/dbh937/Fishies" target="_blank">open source</a>.
+  </footer>
+</body>
+</html>

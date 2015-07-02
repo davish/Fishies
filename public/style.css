@@ -1,39 +1,61 @@
 body {
 	margin: 0px;
 	font-family: sans-serif;
+	font-size: large;
 	background-color: #006464;
+	color:#006464;
 }
 canvas {
 	border:1px solid #006464;
+}
+h1 {
+	margin: 20px;
 }
 header {
 	margin: 0px;
 	background-color: #006464;
 	color: #A4FFFF;
 	text-align: center;
-	padding: 5px;
+	font-weight:bold;
 }
 nav {
 	margin: 0px;
-	height: 26px;
+	height: 29px;
 	background-color: #70FFFF;
+	font-weight:bold;
 }
 section {
-    float:left;
-    padding:10px;
-	background-color: white;
+	float:left;
+	padding:10px;
+	min-height: 500px;
+	overflow: auto;
+}
+section.canvasHolder {
+	height: 602px;
+	overflow: hidden;
+}
+aside {
+	padding: 10px;
+	overflow:auto;
+	min-width: 150px;
 }
 footer {
-    background-color: #006464;
-    color: #A4FFFF;
-    clear: both;
-    text-align: center;
-    padding: 5px; 
+	background-color: #006464;
+	color: #A4FFFF;
+	clear: both;
+	text-align: center;
+	padding: 10px;
+}
+div.content {
+	background-color: white;
+	padding: 0px;
+}
+p {
+	font-size: large;
 }
 ul {
 	margin: 0px;
 	padding: 0px;
-	height: 30px;
 	list-style-type: none;
 }
 li {
@@ -41,7 +63,8 @@ li {
 }
 a:link, a:visited {
 	display: block;
-	width: 200px;
+	width: 150px;
+	background-color: #70FFFF;
 	color: #006464;
 	text-align: center;
 	padding: 4px;
@@ -51,4 +74,30 @@ a:link, a:visited {
 a:hover, a:active {
 	background-color: #008282;
 	color: #A4FFFF;
+}
+a.inline {
+	display: initial;
+	color: initial;
+	background-color: initial;
+	text-transform: initial;
+	padding: initial;
+	color: #008282;
+}
+a.inline:hover, a.inline:active {
+	text-decoration: underline;
+	color: #00FFFF;
+}
+a.inlineLight:link, a.inlineLight:visited {
+	color: white;
+	display: initial;
+	background-color: initial;
+	text-transform: initial;
+	padding: initial;
+}
+a.inlineLight:hover, a.inlineLight:active {
+	text-decoration: underline;
+	color: #00FFFF;
+}
+br.clear {
+	clear: both;
 }
