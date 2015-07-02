@@ -1,90 +1,90 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>The Genetic Fishbowl</title>
-<link rel="stylesheet" type="text/css" href="style.css"></link>
-<link rel="icon" type="image/png" href="favicon.png">
-<script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
-<script src="main.min.js"></script>
+	<title>The Genetic Fishbowl</title>
+	<link rel="stylesheet" type="text/css" href="style.css"></link>
+	<link rel="icon" type="image/png" href="favicon.png">
+	<script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+	<script src="main.min.js"></script>
 </head>
 <body onload="init()">
 
-<header>
-<h1>The Genetic Fishbowl</h1>
-</header>
+	<header>
+		<h1>The Genetic Fishbowl</h1>
+	</header>
 
-<nav>
-<ul>
-	<li><a href="./index.html">The Fishbowl</a></li>
-	<li><a href="./introduction.html">How to Play</a></li>
-	<li><a href="./fish.html">The Fish</a></li>
-	<li><a href="./selection.html">Selection</a></li>
-	<li><a href="./crossover.html">Crossover</a></li>
-	<li><a href="./mutation.html">Mutation</a></li>
-</ul>
-</nav>
+	<nav>
+		<ul>
+			<li><a href="./index.html">The Fishbowl</a></li>
+			<li><a href="./introduction.html">How to Play</a></li>
+			<li><a href="./fish.html">The Fish</a></li>
+			<li><a href="./selection.html">Selection</a></li>
+			<li><a href="./crossover.html">Crossover</a></li>
+			<li><a href="./mutation.html">Mutation</a></li>
+		</ul>
+	</nav>
 
-<div class="content">
-<section>
-<p>
-Each of the fish in our simulation has a "chromosome." In biology, this chromosome would be a series of nitrogen bases.
-While <a class="inline" href="https://en.wikipedia.org/wiki/Genetic_algorithm#Chromosome_representation" target="_blank">some other genetic algorithms</a> encode characteristics in binary and represent the chromosome as a series of ones and zeros, we decided to simplify our model.
-Each fish's chromosome is an array of __ numerical values that control various aspects of its appearance and behavior.
-A typical chromosome may look like this:
-</p>
-<p>
-[50, 20, 5, 30, 2, 0, 100, 50, 240, 100, 50]
-</p>
-<p>
-The first five values represent the dimensions of the fish, in this order:<br>
-1: Body Length<br>
-2: Body Width<br>
-3: Tail Length<br>
-4: Tail Width<br>
-5: Eye Radius
-</p>
-<p>
-All of the dimensional values are measured in pixels, so the example chromosome above would have a body of length 50px and width 20px, a tail of length 50px and width 30px, and an eye of radius 3px.
-This fish would look like this:
-</p>
-<figure>
-<><
-<figcaption>[50, 20, 5, 30, 2]</figcaption>
-</figure>
-<p>
-The shape of the fish depends entirely on these five values. Changing these values produces different fish shapes, or "<a class="inline" href="https://en.wikipedia.org/wiki/Phenotype" target="_blank">phenotypes</a>." Here are several examples of fish and the first five values in their chromosome:
-</p>
-<figure>
-<><
-<figcaption>[40, 25, 10, 25, 3]</figcaption>
-</figure>
-<figure>
-<><
-<figcaption>[70, 25, 3, 20, 2]</figcaption>
-</figure>
-<figure>
-<><
-<figcaption>[60, 10, 5, 30, 2]</figcaption>
-</figure>
-<figure>
-<><
-<figcaption>[40, 25, 10, 25, 3]</figcaption>
-</figure>
-<figure>
-<><
-<figcaption>[40, 25, 10, 25, 3]</figcaption>
-</figure>
-<p>
-Aside from these dimensional values, the chromosome also contains several values
-that affect a fish's behavior. ...
-</p>
-</section>
-<br class="clear">
-</div>
+	<div class="content">
+		<section>
+			<p>
+				Each of the fish in our simulation has a "chromosome." In biology, this chromosome would be a series of nitrogen bases.
+				While <a class="inline" href="https://en.wikipedia.org/wiki/Genetic_algorithm#Chromosome_representation" target="_blank">some other genetic algorithms</a> encode characteristics in binary and represent the chromosome as a series of ones and zeros, we decided to simplify our model.
+				Each fish's chromosome is an array of __ numerical values that control various aspects of its appearance and behavior.
+				A typical chromosome may look like this:
+			</p>
+			<p>
+				[50, 20, 5, 30, 2, 0, 100, 50, 240, 100, 50]
+			</p>
+			<p>
+				The first five values represent the dimensions of the fish, in this order:<br>
+				1: Body Length<br>
+				2: Body Width<br>
+				3: Tail Length<br>
+				4: Tail Width<br>
+				5: Eye Radius
+			</p>
+			<p>
+				All of the dimensional values are measured in pixels, so the example chromosome above would have a body of length 50px and width 20px, a tail of length 50px and width 30px, and an eye of radius 3px.
+				This fish would look like this:
+			</p>
+			<figure>
+				<><
+				<figcaption>[50, 20, 5, 30, 2]</figcaption>
+			</figure>
+			<p>
+				The shape of the fish depends entirely on these five values. Changing these values produces different fish shapes, or "<a class="inline" href="https://en.wikipedia.org/wiki/Phenotype" target="_blank">phenotypes</a>." Here are several examples of fish and the first five values in their chromosome:
+			</p>
+			<figure>
+				<><
+				<figcaption>[40, 25, 10, 25, 3]</figcaption>
+			</figure>
+			<figure>
+				<><
+				<figcaption>[70, 25, 3, 20, 2]</figcaption>
+			</figure>
+			<figure>
+				<><
+				<figcaption>[60, 10, 5, 30, 2]</figcaption>
+			</figure>
+			<figure>
+				<><
+				<figcaption>[40, 25, 10, 25, 3]</figcaption>
+			</figure>
+			<figure>
+				<><
+				<figcaption>[40, 25, 10, 25, 3]</figcaption>
+			</figure>
+			<p>
+				Aside from these dimensional values, the chromosome also contains several values
+				that affect a fish's behavior. ...
+			</p>
+		</section>
+		<br class="clear">
+	</div>
 
-<footer>
-Created by Finn Voichick, Kevin Wang, and Davis Haupt<br>
-This project is <a class="inlineLight" href="https://github.com/dbh937/Fishies" target="_blank">open source</a>.
-</footer>
+	<footer>
+		Created by Finn Voichick, Kevin Wang, and Davis Haupt<br>
+		This project is <a class="inlineLight" href="https://github.com/dbh937/Fishies" target="_blank">open source</a>.
+	</footer>
 </body>
 </html>

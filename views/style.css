@@ -25,9 +25,9 @@ nav {
 	font-weight:bold;
 }
 section {
-    float:left;
-    padding:10px;
-		min-height: 500px;
+	float:left;
+	padding:10px;
+	min-height: 500px;
 	overflow: auto;
 }
 section.canvasHolder {
@@ -40,11 +40,11 @@ aside {
 	min-width: 150px;
 }
 footer {
-    background-color: #006464;
-    color: #A4FFFF;
-    clear: both;
-    text-align: center;
-    padding: 10px;
+	background-color: #006464;
+	color: #A4FFFF;
+	clear: both;
+	text-align: center;
+	padding: 10px;
 }
 div.content {
 	background-color: white;
