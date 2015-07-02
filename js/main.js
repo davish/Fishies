@@ -15,3 +15,7 @@ let Simulation = {
 $(document).ready(() => {
   Simulation.init();
 });
+
+window.stopSimulation = () => {
+  Simulation.graphics.stop();
+};

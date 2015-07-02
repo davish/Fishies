@@ -7,9 +7,9 @@ class State {
     this.food = [];
 
     //temporary
-    let variance = 15;
+    let variance = 8;
     for(let i = 0; i < 8; i++) {
-      this.fish.push(new Fish(new Chromosome(1000*Algorithms.randomWithinPercent(variance), 50*Algorithms.randomWithinPercent(variance), 20*Algorithms.randomWithinPercent(variance), Math.PI * Algorithms.randomWithinPercent(variance)), {x: 600*Algorithms.randomWithinPercent(25), y: 450*Algorithms.randomWithinPercent(25)}));
+      this.fish.push(new Fish(new Chromosome(1000*Algorithms.randomWithinPercent(variance), 50*Algorithms.randomWithinPercent(variance), 5*Algorithms.randomWithinPercent(variance), Math.PI * Algorithms.randomWithinPercent(variance)), {x: 600*Algorithms.randomWithinPercent(25), y: 450*Algorithms.randomWithinPercent(25)}));
     }
   }
 
