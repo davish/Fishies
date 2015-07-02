@@ -26,17 +26,25 @@ class Graphics {
       this.entities.push(new FishGraphicsObject(f));
     }
     for(let {shape} of this.entities){
+      console.log(shape);
       this.stage.addChild(shape);
     }
   }
 
   render() {
     if(this.draw) {
-      console.log('render');
+      this.update();
       this.renderer.render(this.stage);
       requestAnimationFrame(() => {
         this.render();
       });
+    }
+  }
+
+  update() {
+    for(let {data, shape} of this.entities) {
+      shape.position = new PIXI.Point(data.position.x, data.position.y);
+      shape.rotation = data.velocity.t;
     }
   }
 }

@@ -6,21 +6,16 @@ class FishGraphicsObject extends GraphicsObject {
     super(aFish, null);
     let shape = new PIXI.Container();
     let body = new PIXI.Graphics();
-    body.lineStyle(6, 0x2f5e8e, 1);
-    body.drawEllipse(this.data.position.x, this.data.position.y, this.data.chromosome.weight/this.data.chromosome.length, this.data.chromosome.length);
-    let left = new PIXI.Graphics();
-    left.drawEllipse(this.data.position.x - this.data.chromosome.tail*Math.SQRT2/2, this.data.position.y + this.data.chromosome.length + this.data.chromosome.tail*Math.SQRT2/2, this.data.chromosome.tail, this.data.chromosome.tail*3);
-    left.rotation = Math.PI/2;
-    left.lineStyle(6, 0x8800f0, 1);
-    let right = left.clone();
-    right.x = this.data.position.x + this.data.chromosome.tail*Math.SQRT2/2;
-    right.y = this.data.position.y + this.data.chromosome.length + this.data.chromosome.tail*Math.SQRT2/2;
+    body.lineStyle(2, 0x2f5e8e, 1);
+    body.beginFill(0x2f5e8e, 0.5);
+    body.drawEllipse(0, 0, this.data.chromosome.weight/this.data.chromosome.length, this.data.chromosome.length);
+    body.moveTo(0, this.data.chromosome.length-5);
+    body.lineTo(-this.data.chromosome.tail*Math.SQRT2*3/4, this.data.chromosome.length + this.data.chromosome.tail*Math.SQRT2);
+    body.lineTo(0, this.data.chromosome.length + this.data.chromosome.tail*Math.SQRT2/3);
+    body.lineTo(this.data.chromosome.tail*Math.SQRT2*3/4, this.data.chromosome.length + this.data.chromosome.tail*Math.SQRT2);
+    body.lineTo(0, this.data.chromosome.length-5);
     shape.addChild(body);
-    shape.addChild(left);
-    shape.addChild(right);
     this.shape = shape;
-    console.log(shape);
-    //container children are relative to parent
   }
 }
 
