@@ -27,8 +27,7 @@
 <div class="content">
 <section>
 <p>
-The Genetic Fishbowl uses what is called a <i>genetic algorithm</i>, so called because it emulates biological processes.
-Each fish has a "chromosome." In biology, this chromosome would be a series of nitrogen bases.
+Each of the fish in our simulation has a "chromosome." In biology, this chromosome would be a series of nitrogen bases.
 While <a class="inline" href="https://en.wikipedia.org/wiki/Genetic_algorithm#Chromosome_representation" target="_blank">some other genetic algorithms</a> encode characteristics in binary and represent the chromosome as a series of ones and zeros, we decided to simplify our model.
 Each fish's chromosome is an array of __ numerical values that control various aspects of its appearance and behavior.
 A typical chromosome may look like this:
@@ -46,15 +45,46 @@ The first five values represent the dimensions of the fish, in this order:<br>
 </p>
 <p>
 All of the dimensional values are measured in pixels, so the example chromosome above would have a body of length 50px and width 20px, a tail of length 50px and width 30px, and an eye of radius 3px.
-This fish would look like this: <>< (replace with image)
+This fish would look like this:
+</p>
+<figure>
+<><
+<figcaption>[50, 20, 5, 30, 2]</figcaption>
+</figure>
 <p>
-The shape of the fish depend entirely on these five values. Changing these values produces a wide variety of fish shapes, or "<a class="inline" href="https://en.wikipedia.org/wiki/Phenotype" target="_blank">phenotypes</a>."
+The shape of the fish depends entirely on these five values. Changing these values produces different fish shapes, or "<a class="inline" href="https://en.wikipedia.org/wiki/Phenotype" target="_blank">phenotypes</a>." Here are several examples of fish and the first five values in their chromosome:
+</p>
+<figure>
+<><
+<figcaption>[40, 25, 10, 25, 3]</figcaption>
+</figure>
+<figure>
+<><
+<figcaption>[70, 25, 3, 20, 2]</figcaption>
+</figure>
+<figure>
+<><
+<figcaption>[60, 10, 5, 30, 2]</figcaption>
+</figure>
+<figure>
+<><
+<figcaption>[40, 25, 10, 25, 3]</figcaption>
+</figure>
+<figure>
+<><
+<figcaption>[40, 25, 10, 25, 3]</figcaption>
+</figure>
+<p>
+Aside from these dimensional values, the chromosome also contains several values
+that affect a fish's behavior. ...
+</p>
 </section>
 <br class="clear">
 </div>
 
 <footer>
-Created by Finn Voichick, Kevin Wang, and Davis Haupt
+Created by Finn Voichick, Kevin Wang, and Davis Haupt<br>
+This project is <a class="inlineLight" href="https://github.com/dbh937/Fishies" target="_blank">open source</a>.
 </footer>
 </body>
 </html>
