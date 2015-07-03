@@ -1,11 +1,23 @@
+let $ = require('jquery');
 let State = require('./state');
 let Graphics = require('./graphics');
 
-function init() {
-  let currentState = new State();
-  console.log(currentState);
-}
+let Simulation = {
+  init() {
+    this.state = new State();
+    this.graphics = new Graphics(this.state);
+    console.log(this.state);
+    this.graphics.initialize();
+    this.graphics.start();
+    this.state.start();
+  }
+};
 
-function reset() {
-  return false;
-}
+$(document).ready(() => {
+  Simulation.init();
+});
+
+window.stopSimulation = () => {
+  Simulation.state.stop();
+  Simulation.graphics.stop();
+};
