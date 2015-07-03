@@ -1,5 +1,11 @@
 let State = require('./state');
 let Graphics = require('./graphics');
 
-let currentState = new State();
-console.log(currentState);
+function init() {
+  let currentState = new State();
+  console.log(currentState);
+}
+
+function reset() {
+  return false;
+}
