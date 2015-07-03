@@ -1,10 +1,12 @@
 let Fish = require('./fish');
 let Chromosome = require('./chromosome');
+let CLOCK = require('./clock');
 
 class State {
   constructor() {
     this.fish = [];
     this.food = [];
+    this.process = false;
 
     //temporary
     let variance = 8;
@@ -21,8 +23,29 @@ class State {
     food.push(aFood);
   }
 
-  tick() {
+  tick(time) {
+    for(let f of this.fish){
+      f.tick(time);
+    }
+  }
 
+  simulate() {
+    if(this.process) {
+      this.tick(CLOCK.getElapsed());
+      requestAnimationFrame(() => {
+        this.simulate();
+      });
+    }
+  }
+
+  start() {
+    this.process = true;
+    CLOCK.start();
+    this.simulate();
+  }
+
+  stop() {
+    this.process = false;
   }
 
   toString() {
