@@ -35,7 +35,7 @@ gulp.task('bs', ['compile'], function () {
       server: {
         baseDir: 'public'
       },
-      port: 1212
+      port: 9090
     });
 });
 
