@@ -4,12 +4,12 @@ let FishGraphicsObject = require('./fishGraphicsObject');
 
 class Graphics {
   constructor(aState){
-    this.renderer = new PIXI.autoDetectRenderer(1200, 900);
-    $('#canvas').append(this.renderer.view);
     this.stage = new PIXI.Container();
     this.state = aState;
     this.entities = [];
     this.draw = false;
+    this.renderer = new PIXI.autoDetectRenderer(this.state.dimensions.x, this.state.dimensions.y);
+    $('#canvas').append(this.renderer.view);
   }
 
   stop() {

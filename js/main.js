@@ -9,6 +9,7 @@ let Simulation = {
     console.log(this.state);
     this.graphics.initialize();
     this.graphics.start();
+    this.state.start();
   }
 };
 
@@ -17,5 +18,6 @@ $(document).ready(() => {
 });
 
 window.stopSimulation = () => {
+  Simulation.state.stop();
   Simulation.graphics.stop();
 };

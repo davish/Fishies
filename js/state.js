@@ -3,11 +3,11 @@ let Chromosome = require('./chromosome');
 let CLOCK = require('./clock');
 
 class State {
-  constructor() {
+  constructor(aDimensions = {x:1, y:1}) {
     this.fish = [];
     this.food = [];
     this.process = false;
-
+    this.dimensions = aDimensions;
     //temporary
     let variance = 8;
     for(let i = 0; i < 8; i++) {

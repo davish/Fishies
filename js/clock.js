@@ -3,12 +3,12 @@ let CLOCK = {
   current: new Date(),
   getElapsed() {
     this.current = new Date();
-    let k = current - former;
+    let k = this.current - this.former;
     this.former = this.current;
     return k;
   },
   start() {
-    former = new Date();
+    this.former = new Date();
   }
 }
 
