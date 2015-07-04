@@ -6,14 +6,18 @@ class FishGraphicsObject extends GraphicsObject {
     super(aFish, null);
     let shape = new PIXI.Container();
     let body = new PIXI.Graphics();
-    body.lineStyle(2, 0x2f5e8e, 1);
-    body.beginFill(0x2f5e8e, 0.5);
-    body.drawEllipse(0, 0, this.data.chromosome.weight/this.data.chromosome.length, this.data.chromosome.length);
-    body.moveTo(0, this.data.chromosome.length-5);
-    body.lineTo(-this.data.chromosome.tail*Math.SQRT2*3/4, this.data.chromosome.length + this.data.chromosome.tail*Math.SQRT2);
-    body.lineTo(0, this.data.chromosome.length + this.data.chromosome.tail*Math.SQRT2/3);
-    body.lineTo(this.data.chromosome.tail*Math.SQRT2*3/4, this.data.chromosome.length + this.data.chromosome.tail*Math.SQRT2);
-    body.lineTo(0, this.data.chromosome.length-5);
+    let length = this.data.chromosome.length;
+    let width = this.data.chromosome.weight/this.data.chromosome.length;
+    let tailLength = this.data.chromosome.tail;
+    let tailWidth = width * 2;
+    body.lineStyle(2, 0x0000ff);
+    body.beginFill(0xff0000);
+    body.moveTo(Math.SQRT2/2 * (-width), Math.SQRT2/2 * length);
+    body.lineTo(-tailWidth, length + tailLength);
+    body.lineTo(0, length);
+    body.lineTo(tailWidth, length + tailLength);
+    body.lineTo(Math.SQRT2/2 * (width), Math.SQRT2/2 * length);
+    body.drawEllipse(0, 0, width, length);
     shape.addChild(body);
     this.shape = shape;
   }
