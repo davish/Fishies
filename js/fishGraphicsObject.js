@@ -9,7 +9,7 @@ class FishGraphicsObject extends GraphicsObject {
     let length = this.data.chromosome.length;
     let width = this.data.chromosome.weight/this.data.chromosome.length;
     let tailLength = this.data.chromosome.tail;
-    let tailWidth = width * 2;
+    let tailWidth = width * 2; //arbitrary - should this change?
     body.lineStyle(2, 0x0000ff);
     body.beginFill(0xff0000);
     body.moveTo(Math.SQRT2/2 * (-width), Math.SQRT2/2 * length);
