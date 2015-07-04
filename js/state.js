@@ -9,9 +9,9 @@ class State {
     this.process = false;
     this.dimensions = aDimensions;
     //temporary
-    let variance = 8;
+    let variance = 25;
     for(let i = 0; i < 8; i++) {
-      this.fish.push(new Fish(new Chromosome(1000*Algorithms.randomWithinPercent(variance), 50*Algorithms.randomWithinPercent(variance), 25*Algorithms.randomWithinPercent(variance), Math.PI * Algorithms.randomWithinPercent(variance)), {x: 600*Algorithms.randomWithinPercent(25), y: 450*Algorithms.randomWithinPercent(25)}));
+      this.fish.push(new Fish(new Chromosome(250*Algorithms.randomWithinPercent(variance), 25*Algorithms.randomWithinPercent(variance), 5*Algorithms.randomWithinPercent(variance), 2*Math.PI * Math.random()), {x: 400*Algorithms.randomWithinPercent(25), y: 300*Algorithms.randomWithinPercent(25)}));
     }
   }
 
