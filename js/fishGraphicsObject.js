@@ -21,6 +21,8 @@ class FishGraphicsObject extends GraphicsObject {
     body.lineTo(tailWidth, length + tailLength);
     body.lineTo(Math.SQRT2/2 * (width), Math.SQRT2/2 * length);
     body.drawEllipse(0, 0, width, length);
+    body.beginFill(eyeColor).lineWidth = 0;
+    body.drawCircle(0, -length / 2, 2);
     shape.addChild(body);
     this.shape = shape;
   }

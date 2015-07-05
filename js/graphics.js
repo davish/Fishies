@@ -30,13 +30,11 @@ class Graphics {
       this.entities.push(new FishGraphicsObject(f));
     }
     for(let {shape} of this.entities){
-      console.log(shape);
       this.stage.addChild(shape);
     }
     for (let f of this.state.food) {
       let newFood = new FoodGraphicsObject(f);
       newFood.shape.position = new PIXI.Point(f.position.x, f.position.y);
-      console.log(newFood);
       this.food.push(newFood);
       this.stage.addChild(newFood.shape);
     }
