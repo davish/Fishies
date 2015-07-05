@@ -1,7 +1,7 @@
 class Food {
-  constructor(aAmount, aPosition = {x: 0, y: 0}) {
-    this.amount = aAmount;
-    this.position = aPosition;
+  constructor(amount, position = {x: 0, y: 0}) {
+    this.amount = amount;
+    this.position = position;
   }
 }
 

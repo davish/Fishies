@@ -16,7 +16,7 @@ class State {
       console.log(this.food[i].position);
     }
     for(let i = 0; i < 8; i++) {
-      this.fish.push(new Fish(new Chromosome(250*Algorithms.randomWithinPercent(variance), 25*Algorithms.randomWithinPercent(variance), 5*Algorithms.randomWithinPercent(variance), 2*Math.PI * Math.random()), {x: 400*Algorithms.randomWithinPercent(25), y: 300*Algorithms.randomWithinPercent(25)}));
+      this.fish.push(new Fish(new Chromosome(250*Algorithms.randomWithinPercent(variance), 25*Algorithms.randomWithinPercent(variance), 5*Algorithms.randomWithinPercent(variance), 256 * Math.random(), 256 * Math.random(), 256 * Math.random(), 256 * Math.random(), 256 * Math.random(), 256 * Math.random(), Math.PI / 2 * Algorithms.randomWithinPercent(50)), {x: 400*Algorithms.randomWithinPercent(25), y: 300*Algorithms.randomWithinPercent(25)}));
     }
   }
 

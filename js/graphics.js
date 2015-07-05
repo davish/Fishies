@@ -6,6 +6,7 @@ let FoodGraphicsObject = require('./foodGraphicsObject')
 class Graphics {
   constructor(aState){
     this.stage = new PIXI.Container();
+    this.stage.addChild(new PIXI.Graphics().beginFill(0xA4FFFF).drawRect(0, 0, 800, 600))
     this.state = aState;
     this.entities = [];
     this.food = [];
