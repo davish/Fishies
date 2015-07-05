@@ -1,3 +1,4 @@
+let Food = require('./food');
 let Fish = require('./fish');
 let Chromosome = require('./chromosome');
 let CLOCK = require('./clock');
@@ -10,6 +11,10 @@ class State {
     this.dimensions = aDimensions;
     //temporary
     let variance = 25;
+    for (let i = 0; i < 10; i++) {
+      this.food.push(new Food(10 * Algorithms.randomWithinPercent(25), {x: 800 * Math.random(), y: 600 * Math.random()}));
+      console.log(this.food[i].position);
+    }
     for(let i = 0; i < 8; i++) {
       this.fish.push(new Fish(new Chromosome(250*Algorithms.randomWithinPercent(variance), 25*Algorithms.randomWithinPercent(variance), 5*Algorithms.randomWithinPercent(variance), 2*Math.PI * Math.random()), {x: 400*Algorithms.randomWithinPercent(25), y: 300*Algorithms.randomWithinPercent(25)}));
     }

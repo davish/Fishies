@@ -1,6 +1,8 @@
 class Food {
-  constructor(amount, position = {x: 0, y: 0}) {
-    this.amount = amount;
-    this.position = position;
+  constructor(aAmount, aPosition = {x: 0, y: 0}) {
+    this.amount = aAmount;
+    this.position = aPosition;
   }
 }
+
+module.exports = Food;
