@@ -6,7 +6,6 @@ let Simulation = {
   init() {
     this.state = new State();
     this.graphics = new Graphics(this.state);
-    console.log(this.state);
     this.graphics.initialize();
     this.graphics.start();
     this.state.start();

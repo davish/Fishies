@@ -1,12 +1,15 @@
 let $ = require('jquery');
 let PIXI = require('pixi.js');
 let FishGraphicsObject = require('./fishGraphicsObject');
+let FoodGraphicsObject = require('./foodGraphicsObject')
 
 class Graphics {
   constructor(aState){
     this.stage = new PIXI.Container();
+    this.stage.addChild(new PIXI.Graphics().beginFill(0xA4FFFF).drawRect(0, 0, 800, 600))
     this.state = aState;
     this.entities = [];
+    this.food = [];
     this.draw = false;
     //this.renderer = new PIXI.autoDetectRenderer(this.state.dimensions.x, this.state.dimensions.y);
     this.renderer = new PIXI.autoDetectRenderer(800, 600);//temporary
@@ -23,11 +26,16 @@ class Graphics {
   }
 
   initialize() {
+    for (let f of this.state.food) {
+      let newFood = new FoodGraphicsObject(f);
+      newFood.shape.position = new PIXI.Point(f.position.x, f.position.y);
+      this.food.push(newFood);
+      this.stage.addChild(newFood.shape);
+    }
     for(let f of this.state.fish) {
       this.entities.push(new FishGraphicsObject(f));
     }
     for(let {shape} of this.entities){
-      console.log(shape);
       this.stage.addChild(shape);
     }
   }
