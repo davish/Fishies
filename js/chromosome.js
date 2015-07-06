@@ -1,7 +1,7 @@
 class Chromosome {
-  constructor(weight, length, tail, bodyR, bodyG, bodyB, eyeR, eyeG, eyeB, vision){
+  constructor(weight, lwRatio, tail, bodyR, bodyG, bodyB, eyeR, eyeG, eyeB, vision){
     this.weight = weight;
-    this.length = length;
+    this.lwRatio = lwRatio;
     this.tail = tail;
     this.bodyR = bodyR;
     this.bodyG = bodyG;

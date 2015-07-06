@@ -7,10 +7,10 @@ class FishGraphicsObject extends GraphicsObject {
     let shape = new PIXI.Container();
     let body = new PIXI.Graphics();
     let chromosome = this.data.chromosome;
-    let length = chromosome.length;
-    let width = chromosome.weight/this.data.chromosome.length;
+    let length = Math.sqrt(chromosome.weight * chromosome.lwRatio);
+    let width = chromosome.weight/length;
     let tailLength = chromosome.tail;
-    let tailWidth = width * 2; //arbitrary - should this change?
+    let tailWidth = width * 1.5; //arbitrary - should this change?
     let bodyColor = Math.floor(chromosome.bodyR) * 256 * 256 + Math.floor(chromosome.bodyG) * 256 + Math.floor(chromosome.bodyB);
     let eyeColor = Math.floor(chromosome.eyeR) * 256 * 256 + Math.floor(chromosome.eyeG) * 256 + Math.floor(chromosome.eyeB);
     body.lineStyle(2, eyeColor);
