@@ -94,8 +94,7 @@ class Fish {
 		for (let f of this.food()) {
 			console.log("Food: " + f + " Fish: " + this);
 			if (Fish.distance(this.position, f.position) < 5) {
-				let i = this.state.food.indexOf(f);
-				this.state.food.splice(i, 1);
+				this.state.removeFood(f);
 				this.energy += f.amount;
 			}
 		}
