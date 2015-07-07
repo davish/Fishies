@@ -35,7 +35,6 @@ class State {
         this.fish.splice(this.fish.indexOf(f), 1);
       }
     }
-    console.log(this.fish);
   }
 
   simulate() {
