@@ -29,19 +29,6 @@ var calcFitness = function(W) {
 	}
 	return distance;
 }
-var mateWords = function(M, P) {
-	var pivot = Math.floor(Math.random() * M.chromosome.length);
-	var X1 = M.chromosome.slice(0, pivot);
-	var Y1 = P.chromosome.slice(pivot);
-	
-	var Y2 = P.chromosome.slice(0, pivot);
-	var X2 = M.chromosome.slice(pivot);
-	
-	var nemo = new Word(X1.concat(Y1));
-	var marlinjr = new Word(Y2.concat(X2));
-	return [nemo, marlinjr];
-	
-}
 
 var mutateWord = function(W) {
 	for (var i=0; i< W.chromosome.length; i++) {
@@ -56,7 +43,7 @@ var runSimulation = function(population, roundNum) {
 //	console.log(population.length);
 
 	for (var i=0; i < population.length; i++) {
-		if (calcFitness(population[i]) < 3) {
+		if (calcFitness(population[i]) < 1) {
 			console.log(population[i].toString() + " | fitness: " + calcFitness(population[i]) + " | round: " + roundNum);
 			break;
 		}
@@ -64,11 +51,11 @@ var runSimulation = function(population, roundNum) {
 	//console.log("\n GENERATION OVER \n")
 }
 
-var GENERATIONS = 10000;
+var GENERATIONS = 50;
 var POPSIZE = 100;
 var PARENTS = 6;
 
-var d = new Darwin(calcFitness, mateWords, mutateWord, generate, runSimulation, POPSIZE, PARENTS, true);
+var d = new Darwin(Word, calcFitness, mutateWord, generate, runSimulation, POPSIZE, PARENTS, false, true);
 /*var pop = [
 			new Word('Hello World'.split('')), 
 			new Word('Hello Wdrld'.split('')), 
