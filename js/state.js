@@ -17,8 +17,6 @@ class State {
     for (let i = 0; i < 10; i++) {
       this.food.push(new Food(10 * Algorithms.randomWithinPercent(25), {x: 800 * Math.random(), y: 600 * Math.random()}));
     }
-	// how to generate a fish:
-	// 250*Algorithms.randomWithinPercent(variance), 2*Algorithms.randomWithinPercent(variance), 8*Algorithms.randomWithinPercent(variance), 256 * Math.random(), 256 * Math.random(), 256 * Math.random(), 256 * Math.random(), 256 * Math.random(), 256 * Math.random(), Math.PI / 2 * Algorithms.randomWithinPercent(50))
 	for (let i = 0; i < population.length; i++) {
 		this.fish.push(new Fish(population[i]));
 	}
