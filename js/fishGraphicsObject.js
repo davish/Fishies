@@ -5,6 +5,8 @@ class FishGraphicsObject extends GraphicsObject {
   constructor(aFish) {
     super(aFish, null);
     this.sprite = new PIXI.Sprite(FishGraphicsObject.normalTexture(aFish));
+    this.sprite.anchor.x = 0.5;
+    this.sprite.anchor.y = 0.5;
     this.sprite.interactive = true;
     this.sprite.mouseover = function(data) {
       this.texture = FishGraphicsObject.deadTexture(aFish);
