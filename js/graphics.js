@@ -51,10 +51,23 @@ class Graphics {
   }
 
   update() {
-    for(let {data, sprite} of this.entities) {
-      sprite.alpha = data.life;
-      sprite.position = new PIXI.Point(data.position.x, data.position.y);
-      sprite.rotation = data.velocity.t;
+    for(let f of this.entities) {
+      let data = f.data;
+      let sprite = f.sprite;
+      if (this.state.fish.includes(data)) {
+        sprite.alpha = data.life;
+        sprite.position = new PIXI.Point(data.position.x, data.position.y);
+        sprite.rotation = data.velocity.t;
+      } else {
+        sprite.alpha = 0;
+        this.entities.splice(this.entities.indexOf(f), 1);
+      }
+    }
+    for (let f of this.food) {
+      if (!this.state.food.includes(f.data)) {
+        f.sprite.alpha = 0;
+        this.food.splice(this.food.indexOf(f), 1);
+      }
     }
   }
 }
