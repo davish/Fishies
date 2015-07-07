@@ -41,6 +41,7 @@ class Fish {
 
 		if (this.alive) {
 			this.position = {x: this.position.x + time/1000*this.velocity.r*Math.sin(this.velocity.t), y: this.position.y - time/1000*this.velocity.r*Math.cos(this.velocity.t)};
+			this.eat();
 			this.energy -= time/50000 * this.chromosome.tail*this.chromosome.tail;
 			if (this.energy < 0) {
 				this.kill();
@@ -57,7 +58,7 @@ class Fish {
 
 	bigFish() {
 		let result = [];
-		for (let f in this.state.fish) {
+		for (let f of this.state.fish) {
 			if (Fish.distance(this.position, f.position) < radii.predator && this.weight * 3/2 < f.weight) {
 				result.push(f);
 			}
@@ -67,7 +68,7 @@ class Fish {
 
 	smallFish() {
 		let result = [];
-		for (let f in this.state.fish) {
+		for (let f of this.state.fish) {
 			if (Fish.distance(this.position, f.position) < radii.prey && this.weight * 2/3 > f.weight) {
 				result.push(f);
 			}
@@ -77,7 +78,7 @@ class Fish {
 
 	food() {
 		let result = [];
-		for (let f in this.state.food) {
+		for (let f of this.state.food) {
 			if (Fish.distance(this.position, f.position) < radii.food) {
 				result.push(f);
 			}
@@ -87,6 +88,17 @@ class Fish {
 
 	kill() {
 		this.alive = false;
+	}
+
+	eat() {
+		for (let f of this.food()) {
+			console.log("Food: " + f + " Fish: " + this);
+			if (Fish.distance(this.position, f.position) < 5) {
+				let i = this.state.food.indexOf(f);
+				this.state.food.splice(i, 1);
+				this.energy += f.amount;
+			}
+		}
 	}
 
 	static mate(momma, pappa) {
