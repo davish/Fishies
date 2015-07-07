@@ -22,8 +22,22 @@ class State {
     fish.push(aFish);
   }
 
+  removeFish(aFish) {
+    let i = this.fish.indexOf(aFish);
+    if (i >= 0) {
+      this.fish.splice(i, 1);
+    }
+  }
+
   addFood(aFood) {
     food.push(aFood);
+  }
+
+  removeFood(aFood) {
+    let i = this.food.indexOf(aFood);
+    if (i >= 0) {
+      this.food.splice(i, 1);
+    }
   }
 
   tick(time) {
@@ -31,7 +45,7 @@ class State {
       if (f.life > 0) {
         f.tick(time);
       } else {
-        this.fish.splice(this.fish.indexOf(f), 1);
+        removeFish(f);
       }
     }
   }
