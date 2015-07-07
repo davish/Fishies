@@ -12,7 +12,7 @@ class Graphics {
     this.entities = [];
     this.food = [];
     this.draw = false;
-    this.renderer = new PIXI.autoDetectRenderer(CONFIG.x, CONFIG.y);//temporary
+    this.renderer = new PIXI.autoDetectRenderer(CONFIG.dimensions.x, CONFIG.dimensions.y);//temporary
     $('#canvas').append(this.renderer.view);
   }
 
