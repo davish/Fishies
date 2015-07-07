@@ -26,7 +26,6 @@ function Darwin(fitness, mate, mutate, generateOrganism, simulate, popSize, surv
 	this.simulate = simulate;
 	this.popSize = popSize;
 	this.survivalRate = survivalRate < popSize ? survivalRate : popSize;
-	
 	this.population = [];
 
 	// gotta generate the first generation
@@ -36,7 +35,7 @@ function Darwin(fitness, mate, mutate, generateOrganism, simulate, popSize, surv
 }
 Darwin.prototype.step = function(roundNum) {
 	this.simulate(this.population, roundNum);
-	var parents = this.successors(this.population);
+	var parents = this.tournament(this.population);
 	var nextGen = [];
 	while (nextGen.length < this.popSize) {
 		// create two new organisms from two random parents.
@@ -49,18 +48,40 @@ Darwin.prototype.step = function(roundNum) {
 		}
 		nextGen = nextGen.concat(nemo); // will push all elements, if by chance it is an array because of multiple children.
 	}
-	nextGen = nextGen.slice(0, 20);
+	nextGen = nextGen.slice(0, this.popSize);
 	this.population = nextGen;
 }
-Darwin.prototype.successors = function(pop) {
+
+// For the "Hello World" example, truncation finds a solution in ~120 generations.
+Darwin.prototype.truncate = function(pop) {
 	pop = [].concat(pop);
 	var f = this.fitness;
 	pop.sort(function(a, b) {
 		return f(a) - f(b);
 	});
-	parents = [];
-	for (var i=0; i < this.survivalRate; i++)
-		parents.push(pop[i]);
+	var parents = [];
+	for (var i=0; i < this.survivalRate; i++) {
+	//	if (pop[i])
+			parents.push(pop[i]);
+	}
+	return parents;
+}
+// For "Hello World", only approaches a distance of 2 from the solution in many generations with much larger populations.
+// When there's an actual goal in mind
+Darwin.prototype.tournament = function(pop) {
+	pop = [].concat(pop);
+	var f = this.fitness;
+	var parents = [];
+	while (pop.length > 1) {
+		var i = Math.floor(Math.random() * pop.length);
+		var o1 = pop[i];
+		pop.splice(i, 1);
+		var j = Math.floor(Math.random() * pop.length);
+		var o2 = pop[j];
+		pop.splice(j, 1);
+		f(o1) < f(o2) ? parents.push(o1) : parents.push(o2);
+	}
+	parents = parents.slice(0, this.survivalRate);
 	return parents;
 }
 

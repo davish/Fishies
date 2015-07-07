@@ -40,6 +40,7 @@ var mateWords = function(M, P) {
 	var nemo = new Word(X1.concat(Y1));
 	var marlinjr = new Word(Y2.concat(X2));
 	return [nemo, marlinjr];
+	
 }
 
 var mutateWord = function(W) {
@@ -50,13 +51,37 @@ var mutateWord = function(W) {
 }
 
 var runSimulation = function(population, roundNum) {
+//	console.log("Round: " + roundNum);
+//	console.log(population.length);
+//	console.log(population.length);
+
 	for (var i=0; i < population.length; i++) {
-		if (calcFitness(population[i]) < 1)
-			console.log(population[i].toString() + "| fitness: " + calcFitness(population[i]) + " | round: " + roundNum);
+		if (calcFitness(population[i]) < 3) {
+			console.log(population[i].toString() + " | fitness: " + calcFitness(population[i]) + " | round: " + roundNum);
+			break;
+		}
 	}
 	//console.log("\n GENERATION OVER \n")
 }
 
-var d = new Darwin(calcFitness, mateWords, mutateWord, generate, runSimulation, 100, 6, true);
-for (var i=0; i < 150; i++)
+var GENERATIONS = 10000;
+var POPSIZE = 100;
+var PARENTS = 6;
+
+var d = new Darwin(calcFitness, mateWords, mutateWord, generate, runSimulation, POPSIZE, PARENTS, true);
+/*var pop = [
+			new Word('Hello World'.split('')), 
+			new Word('Hello Wdrld'.split('')), 
+			new Word('Hellp Wdrdd'.split('')),
+			generate(),
+			generate(),
+			generate(),
+			generate(),
+			generate(),
+			generate(),
+			generate()
+		];
+console.log(d.tournament(pop))
+	*/	
+for (var i=0; i < GENERATIONS; i++)
 	d.step(i);
