@@ -11,7 +11,6 @@ class Fish {
 	constructor(aChromosome, aPosition = {x: 0, y:0}, aVelocity = {r: 0, t:0}, aState) {
 		this.chromosome = aChromosome;
 		this.velocity = aVelocity;
-		this.velocity = {r: 8, t: Math.random()*Math.PI*2};//temporary
 		this.position = aPosition;
 		this.alive = true;
 		this.life = 1; //used when fish die
@@ -39,6 +38,8 @@ class Fish {
 			}
 		}
 
+		//this.movement();
+
 		if (this.alive) {
 			this.position = {x: this.position.x + time/1000*this.velocity.r*Math.sin(this.velocity.t), y: this.position.y - time/1000*this.velocity.r*Math.cos(this.velocity.t)};
 			this.energy -= time/50000 * this.chromosome.tail*this.chromosome.tail;
@@ -51,13 +52,39 @@ class Fish {
 	}
 
 	movement() {
-		let enemies = [];
+		let vector = {
+			x: 0,
+			y: 0
+		};
 
+		for (let predator of this.bigFish()){
+			let theta = Fish.angle(this.position, predator.position);
+			vector.x -= Math.sin(theta)*this.chromosome.beta;
+			vector.y += Math.cos(theta)*this.chromosome.beta;
+		}
+
+		for(let prey of this.smallFish()){
+			let theta = Fish.angle(this.position, prey.position);
+			vector.x += Math.sin(theta)*this.chromosome.alpha;
+			vector.y -= Math.cos(theta)*this.chromosome.alpha;
+		}
+
+		for(let food of this.food()){
+			let theta = Fish.angle(this.position, food.position);
+			vector.x += Math.sin(theta)*this.chromosome.gamma;
+			vector.y -= Math.cos(theta)*this.chromosome.gamma;
+		}
+
+		let theta = Math.atan2(vector.x, vector.y);
+		if(theta < 0) {
+			theta += Math.PI*2;
+		}
+		this.velocity.t = theta;
 	}
 
 	bigFish() {
 		let result = [];
-		for (let f in this.state.fish) {
+		for (let f of this.state.fish) {
 			if (Fish.distance(this.position, f.position) < radii.predator && this.weight * 3/2 < f.weight) {
 				result.push(f);
 			}
@@ -67,7 +94,7 @@ class Fish {
 
 	smallFish() {
 		let result = [];
-		for (let f in this.state.fish) {
+		for (let f of this.state.fish) {
 			if (Fish.distance(this.position, f.position) < radii.prey && this.weight * 2/3 > f.weight) {
 				result.push(f);
 			}
@@ -77,7 +104,7 @@ class Fish {
 
 	food() {
 		let result = [];
-		for (let f in this.state.food) {
+		for (let f of this.state.food) {
 			if (Fish.distance(this.position, f.position) < radii.food) {
 				result.push(f);
 			}
@@ -102,6 +129,16 @@ class Fish {
 		let dX = pointA.x - pointB.x;
 		let dY = pointA.y - pointB.y;
 		return Math.sqrt(dX*dX + dY*dY);
+	}
+
+	static angle(pointA, pointB){
+		let dX = pointB.x - pointA.x;
+		let dY = pointA.y - pointB.y;
+		let theta = Math.atan2(dX,dY);//due to shifted polar coordinate system
+		if(theta < 0) {
+			theta += Math.PI*2;
+		}
+		return theta;
 	}
 }
 
