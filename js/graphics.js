@@ -1,7 +1,8 @@
 let $ = require('jquery');
 let PIXI = require('pixi.js');
 let FishGraphicsObject = require('./fishGraphicsObject');
-let FoodGraphicsObject = require('./foodGraphicsObject')
+let FoodGraphicsObject = require('./foodGraphicsObject');
+let CONFIG = require('./config');
 
 class Graphics {
   constructor(aState){
@@ -11,8 +12,7 @@ class Graphics {
     this.entities = [];
     this.food = [];
     this.draw = false;
-    //this.renderer = new PIXI.autoDetectRenderer(this.state.dimensions.x, this.state.dimensions.y);
-    this.renderer = new PIXI.autoDetectRenderer(800, 600);//temporary
+    this.renderer = new PIXI.autoDetectRenderer(CONFIG.x, CONFIG.y);//temporary
     $('#canvas').append(this.renderer.view);
   }
 
