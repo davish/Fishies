@@ -1,6 +1,12 @@
 let CONFIG = require('./config');
 let stateDimensions = CONFIG.dimensions;
 
+const radii = {
+	predator: 30,
+	prey: 30,
+	food: 42
+};
+
 class Fish {
 	constructor(aChromosome, aPosition = {x: 0, y:0}, aVelocity = {r: 0, t:0}, aState) {
 		this.chromosome = aChromosome;
@@ -46,7 +52,37 @@ class Fish {
 
 	movement() {
 		let enemies = [];
-		
+
+	}
+
+	bigFish() {
+		let result = [];
+		for (let f in this.state.fish) {
+			if (Fish.distance(this.position, f.position) < radii.predator && this.weight * 3/2 < f.weight) {
+				result.push(f);
+			}
+		}
+		return result;
+	}
+
+	smallFish() {
+		let result = [];
+		for (let f in this.state.fish) {
+			if (Fish.distance(this.position, f.position) < radii.prey && this.weight * 2/3 > f.weight) {
+				result.push(f);
+			}
+		}
+		return result;
+	}
+
+	food() {
+		let result = [];
+		for (let f in this.state.food) {
+			if (Fish.distance(this.position, f.position) < radii.food) {
+				result.push(f);
+			}
+		}
+		return result;
 	}
 
 	kill() {
@@ -60,6 +96,12 @@ class Fish {
 		let Y = pappa.chromosome.slice(split);
 
 		return new Fish(X.concat(Y));
+	}
+
+	static distance(pointA, pointB) {
+		let dX = pointA.x - pointB.x;
+		let dY = pointA.y - pointB.y;
+		return Math.sqrt(dX*dX + dY*dY);
 	}
 }
 
