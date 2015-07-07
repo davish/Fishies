@@ -52,6 +52,7 @@ class Graphics {
 
   update() {
     for(let {data, sprite} of this.entities) {
+      sprite.alpha = data.life;
       sprite.position = new PIXI.Point(data.position.x, data.position.y);
       sprite.rotation = data.velocity.t;
     }

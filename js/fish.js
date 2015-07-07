@@ -5,6 +5,7 @@ class Fish {
 		this.velocity = {r: 8, t: Math.random()*Math.PI*2};//temporary
 		this.position = aPosition;
 		this.alive = true;
+		this.life = 1; //used when fish die
 	}
 
 	tick(time) {
@@ -19,7 +20,11 @@ class Fish {
 		// } else if(this.position.y > stateDimensions.y && (this.velocity.t >= Math.PI/2 && this.velocity.t <= Math.PI*3/2)) {
 		//
 		// }
-		this.position = {x: this.position.x + time/1000*this.velocity.r*Math.sin(this.velocity.t), y: this.position.y - time/1000*this.velocity.r*Math.cos(this.velocity.t)};
+		if (this.alive) {
+			this.position = {x: this.position.x + time/1000*this.velocity.r*Math.sin(this.velocity.t), y: this.position.y - time/1000*this.velocity.r*Math.cos(this.velocity.t)};
+		} else {
+			this.life -= time/1000;
+		}
 	}
 
 	kill() {

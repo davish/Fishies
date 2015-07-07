@@ -29,8 +29,13 @@ class State {
 
   tick(time) {
     for(let f of this.fish){
-      f.tick(time);
+      if (f.life > 0) {
+        f.tick(time);
+      } else {
+        this.fish.splice(this.fish.indexOf(f), 1);
+      }
     }
+    console.log(this.fish);
   }
 
   simulate() {

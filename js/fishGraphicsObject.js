@@ -7,10 +7,15 @@ class FishGraphicsObject extends GraphicsObject {
     this.sprite = new PIXI.Sprite(FishGraphicsObject.normalTexture(aFish));
     this.sprite.interactive = true;
     this.sprite.mouseover = function(data) {
-      this.setTexture(FishGraphicsObject.deadTexture(aFish));
+      this.texture = FishGraphicsObject.deadTexture(aFish);
     }
     this.sprite.mouseout = function(data) {
-      this.setTexture(FishGraphicsObject.normalTexture(aFish));
+      if (aFish.alive) {
+        this.texture = FishGraphicsObject.normalTexture(aFish);
+      }
+    }
+    this.sprite.click = function(data) {
+      aFish.kill();
     }
   }
 
