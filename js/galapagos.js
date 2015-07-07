@@ -62,3 +62,4 @@ var runSimulation = function(population, roundNum) {
 var start = function() {
 	let galapagos = new Darwin(Chromosome, calcFitness, gaussianMutateChromosome, generateChromosome, runSimulation, POPSIZE, PARENTS, UNIFORM, TRUNCATION);
 }
+module.exports.generateChromosome = generateChromosome;
