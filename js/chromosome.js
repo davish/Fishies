@@ -1,6 +1,7 @@
 class Chromosome {
-  constructor(weight, lwRatio, tail, bodyR, bodyG, bodyB, eyeR, eyeG, eyeB, vision, alpha, beta, gamma){
-	this.genes = [weight, lwRatio, tail, bodyR, bodyG, bodyB, eyeR, eyeG, eyeB, vision, alpha, beta, gamma];
+  constructor(g){
+	this.chromosome = g;
+	this.fitness = 0; // obvi they haven't proven themselves yet.
   }
 
   get weight(){
