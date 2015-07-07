@@ -6,6 +6,7 @@ class Fish {
 		this.position = aPosition;
 		this.alive = true;
 		this.life = 1; //used when fish die
+		this.energy = 100;
 	}
 
 	tick(time) {
@@ -30,6 +31,10 @@ class Fish {
 
 		if (this.alive) {
 			this.position = {x: this.position.x + time/1000*this.velocity.r*Math.sin(this.velocity.t), y: this.position.y - time/1000*this.velocity.r*Math.cos(this.velocity.t)};
+			this.energy -= time/50000 * this.chromosome.tail*this.chromosome.tail;
+			if (this.energy < 0) {
+				this.kill();
+			}
 		} else {
 			this.life -= time/1000;
 		}
