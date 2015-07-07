@@ -2,7 +2,7 @@ let CONFIG = require('./config');
 let stateDimensions = CONFIG.dimensions;
 
 class Fish {
-	constructor(aChromosome, aPosition = {x: 0, y:0}, aVelocity = {r: 0, t:0}) {
+	constructor(aChromosome, aPosition = {x: 0, y:0}, aVelocity = {r: 0, t:0}, aState) {
 		this.chromosome = aChromosome;
 		this.velocity = aVelocity;
 		this.velocity = {r: 8, t: Math.random()*Math.PI*2};//temporary
@@ -10,6 +10,7 @@ class Fish {
 		this.alive = true;
 		this.life = 1; //used when fish die
 		this.energy = 100;
+		this.state = aState;
 	}
 
 	tick(time) {
@@ -41,6 +42,11 @@ class Fish {
 		} else {
 			this.life -= time/1000;
 		}
+	}
+
+	movement() {
+		let enemies = [];
+		
 	}
 
 	kill() {
