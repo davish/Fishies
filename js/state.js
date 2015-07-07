@@ -58,7 +58,7 @@ class State {
   stop() {
     this.process = false;
 	for (let i = 0; i < this.fish.length; i++) {
-		this.fish[i].chromosome.fitness = this.fish[i].energy;
+		this.fish[i].chromosome.fitness = -this.fish[i].energy; // lower is better for the sort
 	}
   }
 
