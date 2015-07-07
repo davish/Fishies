@@ -28,15 +28,15 @@ class Graphics {
   initialize() {
     for (let f of this.state.food) {
       let newFood = new FoodGraphicsObject(f);
-      newFood.shape.position = new PIXI.Point(f.position.x, f.position.y);
+      newFood.sprite.position = new PIXI.Point(f.position.x, f.position.y);
       this.food.push(newFood);
-      this.stage.addChild(newFood.shape);
+      this.stage.addChild(newFood.sprite);
     }
     for(let f of this.state.fish) {
       this.entities.push(new FishGraphicsObject(f));
     }
-    for(let {shape} of this.entities){
-      this.stage.addChild(shape);
+    for(let {sprite} of this.entities){
+      this.stage.addChild(sprite);
     }
   }
 
@@ -51,9 +51,9 @@ class Graphics {
   }
 
   update() {
-    for(let {data, shape} of this.entities) {
-      shape.position = new PIXI.Point(data.position.x, data.position.y);
-      shape.rotation = data.velocity.t;
+    for(let {data, sprite} of this.entities) {
+      sprite.position = new PIXI.Point(data.position.x, data.position.y);
+      sprite.rotation = data.velocity.t;
     }
   }
 }

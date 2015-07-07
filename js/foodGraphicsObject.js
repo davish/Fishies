@@ -8,8 +8,9 @@ class FoodGraphicsObject extends GraphicsObject {
     graphics.lineStyle(2, 0xB8860B);
     graphics.beginFill(0xDAA520);
     graphics.drawCircle(0, 0, food.amount);
-    this.shape = new PIXI.Container();
-    this.shape.addChild(graphics);
+    graphics.boundsPadding = 1;
+    let texture = graphics.generateTexture();
+    this.sprite = new PIXI.Sprite(texture);
   }
 }
 

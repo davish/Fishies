@@ -1,9 +1,9 @@
 let PIXI = require('pixi.js');
 
 class GraphicsObject {
-  constructor(aData, aShape) {
+  constructor(aData, aSprite) {
     this.data = aData;
-    this.shape = aShape;
+    this.sprite = aSprite;
   }
 }
 

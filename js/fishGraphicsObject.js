@@ -4,7 +4,6 @@ let GraphicsObject = require('./graphicsObject');
 class FishGraphicsObject extends GraphicsObject {
   constructor(aFish) {
     super(aFish, null);
-    let shape = new PIXI.Container();
     let body = new PIXI.Graphics();
     let chromosome = this.data.chromosome;
     let length = Math.sqrt(chromosome.weight * chromosome.lwRatio);
@@ -23,8 +22,10 @@ class FishGraphicsObject extends GraphicsObject {
     body.drawEllipse(0, 0, width, length);
     body.beginFill(eyeColor).lineWidth = 0;
     body.drawCircle(0, -length / 2, 2);
-    shape.addChild(body);
-    this.shape = shape;
+    body.boundsPadding = 1;
+    let texture = body.generateTexture();
+    //let texture = PIXI.Texture.fromImage("./fishimage.png");
+    this.sprite = new PIXI.Sprite(texture);
   }
 }
 
