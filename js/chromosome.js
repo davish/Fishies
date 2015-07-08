@@ -1,6 +1,6 @@
 class Chromosome {
   constructor(g){
-	this.chromosome = g;
+	this.genes = g;
 	this.fitness = 0; // obvi they haven't proven themselves yet.
   }
 

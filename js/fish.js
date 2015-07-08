@@ -119,7 +119,6 @@ class Fish {
 
 	eat() {
 		for (let f of this.food()) {
-			console.log("Food: " + f + " Fish: " + this);
 			if (Fish.distance(this.position, f.position) < 5) {
 				this.state.removeFood(f);
 				this.energy += f.amount;

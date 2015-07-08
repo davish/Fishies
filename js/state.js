@@ -18,7 +18,7 @@ class State {
       this.food.push(new Food(10 * Algorithms.randomWithinPercent(25), {x: 800 * Math.random(), y: 600 * Math.random()}));
     }
 	for (let i = 0; i < population.length; i++) {
-		this.fish.push(new Fish(population[i]));
+		this.fish.push(new Fish(population[i], {x: 800 * Math.random(), y: 600 * Math.random()}, {r: 20, t: 2*Math.PI * Math.random()}, this));
 	}
   }
 
@@ -49,7 +49,7 @@ class State {
       if (f.life > 0) {
         f.tick(time);
       } else {
-        removeFish(f);
+        this.removeFish(f);
       }
     }
   }

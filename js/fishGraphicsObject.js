@@ -21,9 +21,9 @@ class FishGraphicsObject extends GraphicsObject {
     }
   }
 
-  static normalTexture(fish) {
+  static normalTexture(aFish) {
     let body = new PIXI.Graphics();
-    let chromosome = fish.chromosome;
+    let chromosome = aFish.chromosome;
     let length = Math.sqrt(chromosome.weight * chromosome.lwRatio);
     let width = chromosome.weight/length;
     let tailLength = chromosome.tail;
@@ -44,9 +44,9 @@ class FishGraphicsObject extends GraphicsObject {
     return body.generateTexture();
   }
 
-  static deadTexture(fish) {
+  static deadTexture(aFish) {
     let body = new PIXI.Graphics();
-    let chromosome = fish.chromosome;
+    let chromosome = aFish.chromosome;
     let length = Math.sqrt(chromosome.weight * chromosome.lwRatio);
     let width = chromosome.weight/length;
     let tailLength = chromosome.tail;
