@@ -55,9 +55,13 @@ var generateChromosome = function() {
 	return new Chromosome(c);
 }
 
+
 var runSimulation = function(population, roundNum) {
-	let S = new State(population);
-	var G = new Graphics(S);
+	if (window.S) {
+		window.S.stop();
+	}
+	window.S = new State(population);
+	window.G = new Graphics(S);
     G.initialize();
     G.start();
     S.start();

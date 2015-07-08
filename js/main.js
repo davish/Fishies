@@ -15,12 +15,14 @@ let Simulation = {
     this.graphics.initialize();
     this.graphics.start();
     this.state.start();
+	
   }
 };
 
 $(document).ready(() => {
-  Simulation.init();
-  $('form#controls').submit(function(e) {
+  //Simulation.init();
+  $('input#submit').click(function(e) {
+	  e.preventDefault();
 	  var popSize = parseInt($("input[name=population]").val());
 	  var truncation = parseInt($("input[name=selection]:checked").val()) == 1;
 	  var successors = parseInt($("input[name=tournamentPop]").val());
@@ -31,7 +33,14 @@ $(document).ready(() => {
 	  
 	  var crossOverRate = parseInt($("input[name=crossoverRate]").val()); // not implemented
 	  
+	  console.log(popSize);
+	  console.log(truncation);
+	  console.log(successors);
+	  console.log(uniform);
+	  
 	  var Galapagos = env(popSize, successors, uniform, truncation);
+	  Galapagos.step();
+	  return false;
   });
 });
 
