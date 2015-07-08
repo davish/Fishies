@@ -68,14 +68,13 @@ class Graphics {
       this.entities.splice(i, 1);
     }
     indicesToRemove = [];
+    console.log("Food: " + this.food);
     for (let f of this.food) {
-      if (!this.state.food.indexOf(f.data >= 0)) {
+      if (this.state.food.indexOf(f.data) == -1) {
         f.sprite.alpha = 0;
-        indicesToRemove = this.food.indexOf(f);
+        console.log(f.sprite);
+        this.food.splice(this.food.indexOf(f), 1);
       }
-    }
-    for (let i of indicesToRemove) {
-      this.food.splice(i, 1);
     }
   }
 }

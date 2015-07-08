@@ -11,6 +11,8 @@ class FoodGraphicsObject extends GraphicsObject {
     graphics.boundsPadding = 1;
     let texture = graphics.generateTexture();
     this.sprite = new PIXI.Sprite(texture);
+    this.sprite.anchor.x = 0.5;
+    this.sprite.anchor.y = 0.5;
   }
 }
 
