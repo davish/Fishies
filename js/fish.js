@@ -4,7 +4,7 @@ let stateDimensions = CONFIG.dimensions;
 const radii = {
 	predator: 200,
 	prey: 200,
-	food: 300
+	food: 20
 };
 
 class Fish {
@@ -58,23 +58,30 @@ class Fish {
 			y: 0
 		};
 
-		for (let predator of this.bigFish()){
-			let theta = Fish.angle(this.position, predator.position);
-			vector.x -= Math.sin(theta)*250/Fish.distance(this.position, predator.position)*this.chromosome.beta;
-			vector.y += Math.cos(theta)*250/Fish.distance(this.position, predator.position)*this.chromosome.beta;
-		}
+		// for (let predator of this.bigFish()){
+		// 	let theta = Fish.angle(this.position, predator.position);
+		// 	vector.x -= Math.sin(theta)*250/Fish.distance(this.position, predator.position)*this.chromosome.beta;
+		// 	vector.y += Math.cos(theta)*250/Fish.distance(this.position, predator.position)*this.chromosome.beta;
+		// }
+		//
+		// for(let prey of this.smallFish()){
+		// 	let theta = Fish.angle(this.position, prey.position);
+		// 	vector.x += Math.sin(theta)*prey.weight/Fish.distance(this.position, prey.position)*this.chromosome.alpha;
+		// 	vector.y -= Math.cos(theta)*prey.weight/Fish.distance(this.position, prey.position)*this.chromosome.alpha;
+		// }
 
-		for(let prey of this.smallFish()){
-			let theta = Fish.angle(this.position, prey.position);
-			vector.x += Math.sin(theta)*prey.weight/Fish.distance(this.position, prey.position)*this.chromosome.alpha;
-			vector.y -= Math.cos(theta)*prey.weight/Fish.distance(this.position, prey.position)*this.chromosome.alpha;
-		}
-
+		let minFood = null;
+		let minDistance = Number.MAX_VALUE;
 		for(let food of this.food()){
-			let theta = Fish.angle(this.position, food.position);
-			vector.x += Math.sin(theta)*250/Fish.distance(this.position, food.position)*this.chromosome.gamma;
-			vector.y -= Math.cos(theta)*250/Fish.distance(this.position, food.position)*this.chromosome.gamma;
+			let dist = Fish.distance(this.position, food.position);
+			if(dist < minDistance){
+				minDistance = dist;
+				minFood = food;
+			}
 		}
+		let magnitude = Fish.distance(this.position, food.position);
+		vector.x += (minfood.position.x - this.position.x)/magnitude*this.chromosome.gamma;
+		vector.y -= (minfood.position.y - this.position.y)/magnitude*this.chromosome.gamma;
 
 		let theta = Math.atan2(vector.x, vector.y);
 		if(theta < 0) {
@@ -139,16 +146,6 @@ class Fish {
 		let dX = pointA.x - pointB.x;
 		let dY = pointA.y - pointB.y;
 		return Math.sqrt(dX*dX + dY*dY);
-	}
-
-	static angle(pointA, pointB){
-		let dX = pointB.x - pointA.x;
-		let dY = pointA.y - pointB.y;
-		let theta = Math.atan2(dX,dY);//due to shifted polar coordinate system
-		if(theta < 0) {
-			theta += Math.PI*2;
-		}
-		return theta;
 	}
 }
 
