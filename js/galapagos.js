@@ -1,4 +1,4 @@
-let Darwin = require('../darwin').Darwin;
+let Darwin = require('./darwin').Darwin;
 let Chromosome = require('./chromosome');
 let Algorithms = require('./algorithms');
 let State = require('./state');
@@ -38,15 +38,18 @@ var randomMutateChromosome = function(F) {
 
 var generateChromosome = function() {
 	var c = [
-				250*Algorithms.randomWithinPercent(25), 
-				2*Algorithms.randomWithinPercent(25), 
-				8*Algorithms.randomWithinPercent(25), 
-				256 * Math.random(), 
-				256 * Math.random(), 
-				256 * Math.random(), 
-				256 * Math.random(), 
-				256 * Math.random(), 
-				256 * Math.random()
+				250*Algorithms.randomWithinPercent(25),
+				2*Algorithms.randomWithinPercent(25),
+				8*Algorithms.randomWithinPercent(25),
+				256 * Math.random(),
+				256 * Math.random(),
+				256 * Math.random(),
+				256 * Math.random(),
+				256 * Math.random(),
+				256 * Math.random(),
+				3*Algorithms.randomWithinPercent(25),
+				6*Algorithms.randomWithinPercent(25),
+				2*Algorithms.randomWithinPercent(25)
 			];
 	return new Chromosome(c);
 }
@@ -61,8 +64,8 @@ var runSimulation = function(population, roundNum) {
 
 var start = function(POPSIZE, PARENTS, UNIFORM, TRUNCATION) {
 	return new Darwin(Chromosome, calcFitness, gaussianMutateChromosome, generateChromosome, runSimulation, POPSIZE, PARENTS, UNIFORM, TRUNCATION);
-	
-	
+
+
 }
 module.exports.generateChromosome = generateChromosome;
 module.exports.Environment = start;
