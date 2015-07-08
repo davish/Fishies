@@ -37,8 +37,10 @@ function Darwin(organismObj, fitness, mutate, generateOrganism, simulate, popSiz
 }
 Darwin.prototype.step = function(roundNum) {
 	this.simulate(this.population, roundNum);
+}
+
+Darwin.prototype.nextGeneration = function() {
 	var parents = [];
-	
 	if (this.truncationOrTournament)
 		parents = this.truncate(this.population);
 	else
@@ -57,17 +59,18 @@ Darwin.prototype.step = function(roundNum) {
 		nextGen = nextGen.concat(nemo); // will push all elements, if by chance it is an array because of multiple children.
 	}
 	nextGen = nextGen.slice(0, this.popSize);
+	console.log("hi");
 	this.population = nextGen;
 }
 
 Darwin.prototype.mate = function(M, P) {
 	if (!this.uniform) {
-		var pivot = Math.floor(Math.random() * M.chromosome.length);
-		var X1 = M.chromosome.slice(0, pivot);
-		var Y1 = P.chromosome.slice(pivot);
+		var pivot = Math.floor(Math.random() * M.genes.length);
+		var X1 = M.genes.slice(0, pivot);
+		var Y1 = P.genes.slice(pivot);
 		
-		var Y2 = P.chromosome.slice(0, pivot);
-		var X2 = M.chromosome.slice(pivot);
+		var Y2 = P.genes.slice(0, pivot);
+		var X2 = M.genes.slice(pivot);
 		
 		var nemo = new this.Organism(X1.concat(Y1));
 		var marlinjr = new this.Organism(Y2.concat(X2));
@@ -76,13 +79,13 @@ Darwin.prototype.mate = function(M, P) {
 	else {
 		var C1 = [];
 		var C2 = [];
-		for (var i=0; i < M.chromosome.length; i++) {
+		for (var i=0; i < M.genes.length; i++) {
 			if (Math.random() > .5) {
-				C1.push(M.chromosome[i]);
-				C2.push(P.chromosome[i]);
+				C1.push(M.genes[i]);
+				C2.push(P.genes[i]);
 			} else {
-				C1.push(P.chromosome[i]);
-				C2.push(M.chromosome[i]);
+				C1.push(P.genes[i]);
+				C2.push(M.genes[i]);
 			}
 		}
 		return [new this.Organism(C1), new this.Organism(C2)];

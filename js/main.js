@@ -38,9 +38,13 @@ $(document).ready(() => {
 	  console.log(successors);
 	  console.log(uniform);
 	  
-	  var Galapagos = env(popSize, successors, uniform, truncation);
-	  Galapagos.step();
+	  window.Galapagos = env(popSize, successors, uniform, truncation);
+	  window.Galapagos.step();
 	  return false;
+  });
+  $("#step").click(function(e) {
+	  //window.S.stop();
+	  window.Galapagos.step();
   });
 });
 
