@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Genetic Fishbowl</title>
+  <link rel="stylesheet" type="text/css" href="style.css"></link>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+  <script src="main.min.js"></script>
+</head>
+<body onload="init()">
+  <header>
+    <h1>The Genetic Fishbowl</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="./index.html">The Fishbowl</a></li>
+			<li><a href="./introduction.html">How to Play</a></li>
+			<li><a href="./fish.html">The Fish</a></li>
+      <li><a href="./energy.html">Energy</a></li>
+			<li><a href="./selection.html">Selection</a></li>
+			<li><a href="./crossover.html">Crossover</a></li>
+			<li><a href="./mutation.html">Mutation</a></li>
+    </ul>
+  </nav>
+  <div class="content">
+    <section>
+      <p>
+        <a class="inline" href="https://en.wikipedia.org/wiki/Mutation_(genetic_algorithm)" target="_blank">Mutation</a> is another process that's essential for our genetic algorithm. In the mutation process, the chromosomes resulting from the crossover process are mutated by a small amount. The idea behind this process is that small variations may give some chromosomes a higher probability of success, and will persist to later generations.
+      </p>
+      <p>
+        Many genetic algorithms have a "mutation rate," which is the probability for any particular value in the chromosome to be randomly modified. Because all of our values are on a continuous scale, it makes more sense to adjust all values by a relatively small amount. We add a random number to each of the values in each chromosome. The random number is <a class="inline" href="https://en.wikipedia.org/wiki/Normal_distribution" target="_blank">normally distributed</a>, meaning that it is more likely to be a small change than a large one.
+      </p>
+      <p>
+        The standard deviation of this distribution is proportional to the current value. This means that if you set the "Mutation" setting to 5%, then there is a 68% chance that the mutated value will be within 5% of the original one. If the mutation setting is too low, then the population will evolve very slowly, and if it is too high, then it may be unstable.
+      </p>
+      <p>
+        If the "Dynamic Mutation Rate" option is enabled, then the mutation rate will slowly decrease over the course of the simulation. This is similar to the process of <a class="inline" href="https://en.wikipedia.org/wiki/Simulated_annealing" target="_blank">simulated annealing</a>. The idea is that the population will evolve quickly originally, but will stabilize later.
+      </p>
+    </section>
+    <br class="clear">
+  </div>
+  <footer>
+    Created by Finn Voichick, Kevin Wang, and Davis Haupt<br>
+    This project is <a class="inlineLight" href="https://github.com/dbh937/Fishies" target="_blank">open source</a>.
+  </footer>
+</body>
+</html>
