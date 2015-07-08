@@ -10,14 +10,16 @@ class Graphics {
   constructor(aState){
     this.state = aState;
     this.stage = new PIXI.Container();
-    this.stage.interactive = true;
-    this.stage.state = aState; // a quick hack. there has to be a better way
-    this.stage.addChild(new PIXI.Graphics().beginFill(0xA4FFFF).drawRect(0, 0, 800, 600))
+    this.background = new PIXI.Container();
+    this.background.addChild(new PIXI.Graphics().beginFill(0xA4FFFF).drawRect(0, 0, 800, 600));
+    this.background.interactive = true;
+    this.background.state = aState; // a quick hack. there has to be a better way
+    this.stage.addChild(this.background);
     this.entities = [];
     this.food = [];
     this.draw = false;
     this.renderer = new PIXI.autoDetectRenderer(CONFIG.dimensions.x, CONFIG.dimensions.y);//temporary
-    this.stage.food = this.food; // a quick hack. there has to be a better way
+    this.background.food = this.food; // a quick hack. there has to be a better way
 	$('#canvas').html('');
     $('#canvas').append(this.renderer.view);
   }
@@ -45,8 +47,8 @@ class Graphics {
       this.stage.addChild(fishGraphics.sprite);
     }
 
-    this.stage.mousedown = function(data) {
-      let newFood = new Food(10 * Algorithms.randomWithinPercent(25), {x: data.data.global.x, y: data.data.global.y});
+    this.background.mousedown = function(data) {
+      let newFood = new Food(5 * Algorithms.randomWithinPercent(25), {x: data.data.global.x, y: data.data.global.y});
       console.log(this.state);
       this.state.addFood(newFood);
       let newFoodGraphics = new FoodGraphicsObject(newFood);
