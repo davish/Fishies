@@ -81,11 +81,11 @@ a.inline {
 	background-color: initial;
 	text-transform: initial;
 	padding: initial;
-	color: #008282;
+	color: #58CDCD;
 }
 a.inline:hover, a.inline:active {
 	text-decoration: underline;
-	color: #00FFFF;
+	color: #58CDCD;
 }
 a.inlineLight:link, a.inlineLight:visited {
 	color: white;
