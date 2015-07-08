@@ -47,6 +47,7 @@ var generateChromosome = function() {
 				256 * Math.random(),
 				256 * Math.random(),
 				256 * Math.random(),
+				100*Algorithms.randomWithinPercent(25),
 				3*Algorithms.randomWithinPercent(25),
 				6*Algorithms.randomWithinPercent(25),
 				2*Algorithms.randomWithinPercent(25)

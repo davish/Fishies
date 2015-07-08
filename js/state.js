@@ -14,7 +14,7 @@ class State {
     this.process = false;
     //temporary
     let variance = 25;
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 20; i++) {
       this.food.push(new Food(10 * Algorithms.randomWithinPercent(25), {x: 800 * Math.random(), y: 600 * Math.random()}));
     }
 	for (let i = 0; i < population.length; i++) {

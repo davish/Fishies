@@ -2,9 +2,9 @@ let CONFIG = require('./config');
 let stateDimensions = CONFIG.dimensions;
 
 const radii = {
-	predator: 200,
-	prey: 200,
-	food: 300
+	predator: 50,
+	prey: 50,
+	food: 200
 };
 
 class Fish {
@@ -42,6 +42,7 @@ class Fish {
 		this.movement();
 
 		if (this.alive) {
+			console.log(this.velocity.t);
 			this.position = {x: this.position.x + time/1000*this.velocity.r*Math.sin(this.velocity.t), y: this.position.y - time/1000*this.velocity.r*Math.cos(this.velocity.t)};
 			this.eat();
 			this.energy -= time/50000 * this.chromosome.tail*this.chromosome.tail;
@@ -54,34 +55,36 @@ class Fish {
 	}
 
 	movement() {
-		let vector = {
-			x: 0,
-			y: 0
-		};
+
+		let biggestPriority = 0;
+		let theta = 0;
 
 		for (let predator of this.bigFish()){
-			let theta = Fish.angle(this.position, predator.position);
-			vector.x -= Math.sin(theta)*250/Fish.distance(this.position, predator.position)*this.chromosome.beta;
-			vector.y += Math.cos(theta)*250/Fish.distance(this.position, predator.position)*this.chromosome.beta;
+			let thisPriority = this.chromosome.beta / Fish.distance(this.position, predator.position);
+			if (thisPriority > biggestPriority) {
+				biggestPriority = thisPriority;
+				theta = (Fish.angle(this.position, predator.position) + 180) % 360; // opposite direction
+			}
 		}
 
-		for(let prey of this.smallFish()){
-			let theta = Fish.angle(this.position, prey.position);
-			vector.x += Math.sin(theta)*prey.weight/Fish.distance(this.position, prey.position)*this.chromosome.alpha;
-			vector.y -= Math.cos(theta)*prey.weight/Fish.distance(this.position, prey.position)*this.chromosome.alpha;
+		for (let prey of this.smallFish()){
+			let thisPriority = prey.weight * this.chromosome.alpha / Fish.distance(this.position, prey.position);
+			if (thisPriority > biggestPriority) {
+				biggestPriority = thisPriority;
+				theta = Fish.angle(this.position, prey.position);
+			}
 		}
 
-		for(let food of this.food()){
-			let theta = Fish.angle(this.position, food.position);
-			vector.x += Math.sin(theta)*250/Fish.distance(this.position, food.position)*this.chromosome.gamma;
-			vector.y -= Math.cos(theta)*250/Fish.distance(this.position, food.position)*this.chromosome.gamma;
+		for (let food of this.food()){
+			let thisPriority = food.amount * this.chromosome.gamma / Fish.distance(this.position, food.position);
+			if (thisPriority > biggestPriority) {
+				biggestPriority = thisPriority;
+				theta = Fish.angle(this.position, food.position);
+			}
 		}
-
-		let theta = Math.atan2(vector.x, vector.y);
-		if(theta < 0) {
-			theta += Math.PI*2;
+		if (biggestPriority != 0) {
+			this.velocity.t = theta;
 		}
-		this.velocity.t = theta;
 	}
 
 	bigFish() {
