@@ -46,7 +46,7 @@ class Fish {
 			console.log(this.velocity.t);
 			this.position = {x: this.position.x + time/1000*this.velocity.r*Math.sin(this.velocity.t), y: this.position.y - time/1000*this.velocity.r*Math.cos(this.velocity.t)};
 			this.eat();
-			this.energy -= time/50000 * this.chromosome.tail*this.chromosome.tail;
+			this.energy -= time/500000 * this.chromosome.tail*this.chromosome.tail;
 			if (this.energy < 0) {
 				this.kill();
 			}
