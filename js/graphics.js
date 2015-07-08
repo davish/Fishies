@@ -49,7 +49,6 @@ class Graphics {
 
     this.background.mousedown = function(data) {
       let newFood = new Food(5 * Algorithms.randomWithinPercent(25), {x: data.data.global.x, y: data.data.global.y});
-      console.log(this.state);
       this.state.addFood(newFood);
       let newFoodGraphics = new FoodGraphicsObject(newFood);
       newFoodGraphics.sprite.position = newFood.position;
