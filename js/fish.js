@@ -20,6 +20,9 @@ class Fish {
 	}
 
 	tick(time) {
+
+		this.movement();
+
 		if(this.position.x > stateDimensions.x && this.velocity.t < Math.PI) {
 			this.position.x = stateDimensions.x;
 			this.velocity.t = Math.PI*2 - this.velocity.t;
@@ -38,8 +41,6 @@ class Fish {
 				this.velocity.t += Math.PI*2;
 			}
 		}
-
-		this.movement();
 
 		if (this.alive) {
 			console.log(this.velocity.t);
@@ -143,16 +144,6 @@ class Fish {
 		let dX = pointA.x - pointB.x;
 		let dY = pointA.y - pointB.y;
 		return Math.sqrt(dX*dX + dY*dY);
-	}
-
-	static angle(pointA, pointB){
-		let dX = pointB.x - pointA.x;
-		let dY = pointA.y - pointB.y;
-		let theta = Math.atan2(dX,dY);//due to shifted polar coordinate system
-		if(theta < 0) {
-			theta += Math.PI*2;
-		}
-		return theta;
 	}
 }
 
