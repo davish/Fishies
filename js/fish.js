@@ -21,7 +21,16 @@ class Fish {
 
 	tick(time) {
 		this.movement();
-
+		if (this.alive) {
+			this.position = {x: this.position.x + time/1000*this.velocity.r*Math.sin(this.velocity.t), y: this.position.y - time/1000*this.velocity.r*Math.cos(this.velocity.t)};
+			this.eat();
+			this.energy -= time/500000 * this.chromosome.tail*this.chromosome.tail*this.chromosome.tail;
+			if (this.energy < 0) {
+				this.kill();
+			}
+		} else {
+			this.life -= time/1000;
+		}
 		if(this.position.x > stateDimensions.x && this.velocity.t < Math.PI) {
 			this.position.x = stateDimensions.x;
 			this.velocity.t = Math.PI*2 - this.velocity.t;
@@ -39,18 +48,7 @@ class Fish {
 			if(this.velocity.t < 0) {
 				this.velocity.t += Math.PI*2;
 			}
-		}
-
-		if (this.alive) {
-			this.position = {x: this.position.x + time/1000*this.velocity.r*Math.sin(this.velocity.t), y: this.position.y - time/1000*this.velocity.r*Math.cos(this.velocity.t)};
-			this.eat();
-			this.energy -= time/500000 * this.chromosome.tail*this.chromosome.tail;
-			if (this.energy < 0) {
-				this.kill();
-			}
-		} else {
-			this.life -= time/1000;
-		}
+		}		
 	}
 
 	movement() {
@@ -62,7 +60,7 @@ class Fish {
 			let thisPriority = this.chromosome.beta / Fish.distance(this.position, predator.position);
 			if (thisPriority > biggestPriority) {
 				biggestPriority = thisPriority;
-				theta = (Fish.angle(this.position, predator.position) + 180) % 360; // opposite direction
+				theta = Fish.angle(this.position, predator.position) + Math.PI; // opposite direction
 			}
 		}
 
