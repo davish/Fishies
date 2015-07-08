@@ -53,6 +53,8 @@ class State {
         this.removeFish(f);
       }
     }
+	if (this.food.length < 1)
+		window.Galapagos.step();
   }
 
   simulate() {
