@@ -11,6 +11,7 @@ class Fish {
 	constructor(aChromosome, aPosition = {x: 0, y:0}, aVelocity = {r: 0, t:0}, aState) {
 		this.chromosome = aChromosome;
 		this.velocity = aVelocity;
+		this.velocity.r = this.chromosome.tail / this.chromosome.weight * 500;
 		this.position = aPosition;
 		this.alive = true;
 		this.life = 1; //used when fish die
