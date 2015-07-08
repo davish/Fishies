@@ -7,7 +7,7 @@ var calcFitness = function(F) {
 	return F.fitness;
 }
 
-var VARIANCE = 25;
+var VARIANCE = 10;
 var MUTATION_RATE = 10;
 
 var gaussianMutateChromosome = function(F) {
@@ -38,19 +38,19 @@ var randomMutateChromosome = function(F) {
 
 var generateChromosome = function() {
 	var c = [
-				250*Algorithms.randomWithinPercent(75),
-				2*Algorithms.randomWithinPercent(75),
-				8*Algorithms.randomWithinPercent(75),
+				250*Algorithms.randomWithinPercent(50),
+				2*Algorithms.randomWithinPercent(50),
+				8*Algorithms.randomWithinPercent(50),
 				256 * Math.random(),
 				256 * Math.random(),
 				256 * Math.random(),
 				256 * Math.random(),
 				256 * Math.random(),
 				256 * Math.random(),
-				100*Algorithms.randomWithinPercent(75),
-				3*Algorithms.randomWithinPercent(75),
-				6*Algorithms.randomWithinPercent(75),
-				2*Algorithms.randomWithinPercent(75)
+				100*Algorithms.randomWithinPercent(50),
+				3*Algorithms.randomWithinPercent(50),
+				6*Algorithms.randomWithinPercent(50),
+				2*Algorithms.randomWithinPercent(50)
 			];
 	return new Chromosome(c);
 }
