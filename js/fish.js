@@ -4,7 +4,7 @@ let stateDimensions = CONFIG.dimensions;
 const radii = {
 	predator: 50,
 	prey: 50,
-	food: 200
+	food: 50
 };
 
 class Fish {
@@ -144,6 +144,15 @@ class Fish {
 		let dX = pointA.x - pointB.x;
 		let dY = pointA.y - pointB.y;
 		return Math.sqrt(dX*dX + dY*dY);
+	}
+	static angle(pointA, pointB){
+		let dX = pointB.x - pointA.x;
+		let dY = pointA.y - pointB.y;
+		let theta = Math.atan2(dX,dY);//due to shifted polar coordinate system
+		if(theta < 0) {
+			theta += Math.PI*2;
+		}
+		return theta;
 	}
 }
 
