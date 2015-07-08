@@ -20,7 +20,6 @@ class Fish {
 	}
 
 	tick(time) {
-
 		this.movement();
 
 		if(this.position.x > stateDimensions.x && this.velocity.t < Math.PI) {
@@ -43,7 +42,6 @@ class Fish {
 		}
 
 		if (this.alive) {
-			console.log(this.velocity.t);
 			this.position = {x: this.position.x + time/1000*this.velocity.r*Math.sin(this.velocity.t), y: this.position.y - time/1000*this.velocity.r*Math.cos(this.velocity.t)};
 			this.eat();
 			this.energy -= time/500000 * this.chromosome.tail*this.chromosome.tail;
@@ -69,7 +67,7 @@ class Fish {
 		}
 
 		for (let prey of this.smallFish()){
-			let thisPriority = prey.weight * this.chromosome.alpha / Fish.distance(this.position, prey.position);
+			let thisPriority = prey.chromosome.weight * this.chromosome.alpha / Fish.distance(this.position, prey.position);
 			if (thisPriority > biggestPriority) {
 				biggestPriority = thisPriority;
 				theta = Fish.angle(this.position, prey.position);
@@ -91,7 +89,7 @@ class Fish {
 	bigFish() {
 		let result = [];
 		for (let f of this.state.fish) {
-			if (Fish.distance(this.position, f.position) < radii.predator && this.weight * 3/2 < f.weight) {
+			if (Fish.distance(this.position, f.position) < radii.predator && this.chromosome.weight * 3/2 < f.chromosome.weight) {
 				result.push(f);
 			}
 		}
@@ -101,7 +99,8 @@ class Fish {
 	smallFish() {
 		let result = [];
 		for (let f of this.state.fish) {
-			if (Fish.distance(this.position, f.position) < radii.prey && this.weight * 2/3 > f.weight) {
+
+			if (Fish.distance(this.position, f.position) < radii.prey && this.chromosome.weight * 2/3 > f.chromosome.weight && f.alive) {
 				result.push(f);
 			}
 		}
@@ -119,6 +118,7 @@ class Fish {
 	}
 
 	kill() {
+		this.energy = 0;
 		this.alive = false;
 	}
 
@@ -128,6 +128,12 @@ class Fish {
 				this.state.removeFood(f);
 				this.energy += f.amount;
 			}
+		}
+		for (let f of this.smallFish()) {
+			if (Fish.distance(this.position, f.position) < 5) {
+				this.energy += f.energy;
+				f.kill();
+				}
 		}
 	}
 
