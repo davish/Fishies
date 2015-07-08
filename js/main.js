@@ -2,6 +2,7 @@ let $ = require('jquery');
 let State = require('./state');
 let Graphics = require('./graphics');
 let gen = require('./galapagos').generateChromosome;
+let env = require('./galapagos').Environment;
 let Simulation = {
   init() {
 	  
@@ -21,10 +22,16 @@ $(document).ready(() => {
   // Simulation.init();
   $('form#controls').submit(function(e) {
 	  var popSize = parseInt($("input[name=population]").val());
-	  var succession = parseInt($("input[name=selection]:checked").val());
+	  var truncation = parseInt($("input[name=selection]:checked").val()) == 1;
 	  var successors = parseInt($("input[name=tournamentPop]").val());
-	  var crossOverRate = parseInt($("input[name=crossoverRate]").val());
 	  var uniform = $("input[name=crossoverMethod]:checked").val() === "uniform";
+
+  	  var mutationRate = parseInt($("input[name=dynamicMutation]").val());
+
+	  
+	  var crossOverRate = parseInt($("input[name=crossoverRate]").val()); // not implemented
+	  
+	  var Galapagos = env(popSize, successors, uniform, truncation);
   });
 });
 
