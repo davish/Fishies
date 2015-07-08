@@ -2,17 +2,22 @@ let $ = require('jquery');
 let PIXI = require('pixi.js');
 let FishGraphicsObject = require('./fishGraphicsObject');
 let FoodGraphicsObject = require('./foodGraphicsObject');
+let Algorithms = require('./algorithms');
+let Food = require('./food.js')
 let CONFIG = require('./config');
 
 class Graphics {
   constructor(aState){
-    this.stage = new PIXI.Container();
-    this.stage.addChild(new PIXI.Graphics().beginFill(0xA4FFFF).drawRect(0, 0, 800, 600))
     this.state = aState;
+    this.stage = new PIXI.Container();
+    this.stage.interactive = true;
+    this.stage.state = aState; // a quick hack. there has to be a better way
+    this.stage.addChild(new PIXI.Graphics().beginFill(0xA4FFFF).drawRect(0, 0, 800, 600))
     this.entities = [];
     this.food = [];
     this.draw = false;
     this.renderer = new PIXI.autoDetectRenderer(CONFIG.dimensions.x, CONFIG.dimensions.y);//temporary
+    this.stage.food = this.food; // a quick hack. there has to be a better way
     $('#canvas').append(this.renderer.view);
   }
 
@@ -28,7 +33,7 @@ class Graphics {
   initialize() {
     for (let f of this.state.food) {
       let newFood = new FoodGraphicsObject(f);
-      newFood.sprite.position = new PIXI.Point(f.position.x, f.position.y);
+      newFood.sprite.position = f.position;
       this.food.push(newFood);
       this.stage.addChild(newFood.sprite);
     }
@@ -37,6 +42,16 @@ class Graphics {
       let fishGraphics = new FishGraphicsObject(f);
       this.entities.push(fishGraphics);
       this.stage.addChild(fishGraphics.sprite);
+    }
+
+    this.stage.mousedown = function(data) {
+      let newFood = new Food(10 * Algorithms.randomWithinPercent(25), {x: data.data.global.x, y: data.data.global.y});
+      console.log(this.state);
+      this.state.addFood(newFood);
+      let newFoodGraphics = new FoodGraphicsObject(newFood);
+      newFoodGraphics.sprite.position = newFood.position;
+      this.addChild(newFoodGraphics.sprite);
+      this.food.push(newFoodGraphics);
     }
   }
 
@@ -68,7 +83,6 @@ class Graphics {
       this.entities.splice(i, 1);
     }
     indicesToRemove = [];
-    console.log("Food: " + this.food);
     for (let f of this.food) {
       if (this.state.food.indexOf(f.data) == -1) {
         f.sprite.alpha = 0;

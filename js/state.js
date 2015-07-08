@@ -23,7 +23,7 @@ class State {
   }
 
   addFish(aFish) {
-    fish.push(aFish);
+    this.fish.push(aFish);
   }
 
   removeFish(aFish) {
@@ -34,7 +34,7 @@ class State {
   }
 
   addFood(aFood) {
-    food.push(aFood);
+    this.food.push(aFood);
   }
 
   removeFood(aFood) {
