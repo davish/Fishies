@@ -5,7 +5,7 @@ let gen = require('./galapagos').generateChromosome;
 let env = require('./galapagos').Environment;
 let Simulation = {
   init() {
-	  
+
 	var pop = [];
 	for (let i=0; i<25; i++) {
 		pop.push(gen());
@@ -19,7 +19,7 @@ let Simulation = {
 };
 
 $(document).ready(() => {
-  // Simulation.init();
+  Simulation.init();
   $('form#controls').submit(function(e) {
 	  var popSize = parseInt($("input[name=population]").val());
 	  var truncation = parseInt($("input[name=selection]:checked").val()) == 1;

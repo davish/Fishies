@@ -32,11 +32,11 @@ class Graphics {
       this.food.push(newFood);
       this.stage.addChild(newFood.sprite);
     }
-    for(let f of this.state.fish) {
-      this.entities.push(new FishGraphicsObject(f));
-    }
-    for(let {sprite} of this.entities){
-      this.stage.addChild(sprite);
+    let allFish = this.state.fish
+    for(let f of allFish) {
+      let fishGraphics = new FishGraphicsObject(f);
+      this.entities.push(fishGraphics);
+      this.stage.addChild(fishGraphics.sprite);
     }
   }
 
@@ -51,10 +51,31 @@ class Graphics {
   }
 
   update() {
-    for(let {data, sprite} of this.entities) {
-      sprite.alpha = data.life;
-      sprite.position = new PIXI.Point(data.position.x, data.position.y);
-      sprite.rotation = data.velocity.t;
+    let indicesToRemove = [];
+    for(let f of this.entities) {
+      let data = f.data;
+      let sprite = f.sprite;
+      if (this.state.fish.indexOf(data) >= 0) {
+        sprite.alpha = data.life;
+        sprite.position = new PIXI.Point(data.position.x, data.position.y);
+        sprite.rotation = data.velocity.t;
+      } else {
+        sprite.alpha = 0;
+        indicesToRemove.push(this.entities.indexOf(f));
+      }
+    }
+    for (let i of indicesToRemove) {
+      this.entities.splice(i, 1);
+    }
+    indicesToRemove = [];
+    for (let f of this.food) {
+      if (!this.state.food.indexOf(f.data >= 0)) {
+        f.sprite.alpha = 0;
+        indicesToRemove = this.food.indexOf(f);
+      }
+    }
+    for (let i of indicesToRemove) {
+      this.food.splice(i, 1);
     }
   }
 }
