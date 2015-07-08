@@ -7,11 +7,12 @@ class State {
   // population is an array containing Chromosomes.
   // the chromosomes are objects containing the characteristics of a specific fish.
   // they are the objects that are maniuplated by the genetic algorithm.
-  constructor(population) {
+  constructor(population, callB) {
 
     this.fish = [];
     this.food = [];
     this.process = false;
+	this.callB = callB;
     //temporary
     let variance = 25;
     for (let i = 0; i < population.length * 5; i++) {
@@ -74,6 +75,7 @@ class State {
 	for (let i = 0; i < this.fish.length; i++) {
 		this.fish[i].chromosome.fitness = -this.fish[i].energy; // lower is better for the sort
 	}
+	window.Galapagos.nextGeneration();
   }
 
   toString() {

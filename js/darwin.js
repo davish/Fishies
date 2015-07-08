@@ -1,8 +1,8 @@
 /*
- * 
+ *
  * @author Davis Haupt
  * Copyright (c) Under the MIT License
- 
+
  * Genetic algorithm originally for the Fishies project with Kevin Wang and Finn Voichick.
  * Goal is to make this as general as possible so as to be usable for other projects.
  */
@@ -12,7 +12,7 @@
 	mate(mom, dad) takes two organisms and returns a child that contains part of each organism's chromosomes.
 	mutate(organism) takes an organism and randomly edits its genome.
 	generateOrganism() generates a random starting organism and returns it to be added to the population.
-	simulate(population[, i]) takes an array of the population and runs the simulation for one generation. 
+	simulate(population[, i]) takes an array of the population and runs the simulation for one generation.
 		optionally takes an int with the gen number for the purposes of the simulation.
 	popSize is an int that represents the size of the population that is simulated.
 	survivalRate is an int (smaller than popSize) that represents how many organisms of the previous generation moves on to the next generation.
@@ -37,13 +37,15 @@ function Darwin(organismObj, fitness, mutate, generateOrganism, simulate, popSiz
 }
 Darwin.prototype.step = function(roundNum) {
 	this.simulate(this.population, roundNum);
+}
+
+Darwin.prototype.nextGeneration = function() {
 	var parents = [];
-	
 	if (this.truncationOrTournament)
 		parents = this.truncate(this.population);
 	else
 		parents = this.tournament(this.population);
-	
+
 	var nextGen = [];
 	while (nextGen.length < this.popSize) {
 		// create two new organisms from two random parents.
@@ -62,13 +64,13 @@ Darwin.prototype.step = function(roundNum) {
 
 Darwin.prototype.mate = function(M, P) {
 	if (!this.uniform) {
-		var pivot = Math.floor(Math.random() * M.chromosome.length);
-		var X1 = M.chromosome.slice(0, pivot);
-		var Y1 = P.chromosome.slice(pivot);
+		var pivot = Math.floor(Math.random() * M.genes.length);
+		var X1 = M.genes.slice(0, pivot);
+		var Y1 = P.genes.slice(pivot);
 		
-		var Y2 = P.chromosome.slice(0, pivot);
-		var X2 = M.chromosome.slice(pivot);
-		
+		var Y2 = P.genes.slice(0, pivot);
+		var X2 = M.genes.slice(pivot);
+
 		var nemo = new this.Organism(X1.concat(Y1));
 		var marlinjr = new this.Organism(Y2.concat(X2));
 		return [nemo, marlinjr];
@@ -76,18 +78,18 @@ Darwin.prototype.mate = function(M, P) {
 	else {
 		var C1 = [];
 		var C2 = [];
-		for (var i=0; i < M.chromosome.length; i++) {
+		for (var i=0; i < M.genes.length; i++) {
 			if (Math.random() > .5) {
-				C1.push(M.chromosome[i]);
-				C2.push(P.chromosome[i]);
+				C1.push(M.genes[i]);
+				C2.push(P.genes[i]);
 			} else {
-				C1.push(P.chromosome[i]);
-				C2.push(M.chromosome[i]);
+				C1.push(P.genes[i]);
+				C2.push(M.genes[i]);
 			}
 		}
 		return [new this.Organism(C1), new this.Organism(C2)];
 	}
-	
+
 }
 
 // For the "Hello World" example, truncation finds a solution in ~120 generations.
@@ -121,6 +123,10 @@ Darwin.prototype.tournament = function(pop) {
 	}
 	parents = parents.slice(0, this.survivalRate);
 	return parents;
+}
+
+Darwin.prototype.roulette = function(pop) {
+//this is good for another day.
 }
 
 module.exports.Darwin = Darwin;

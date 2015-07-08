@@ -20,6 +20,7 @@ class Graphics {
     this.draw = false;
     this.renderer = new PIXI.autoDetectRenderer(CONFIG.dimensions.x, CONFIG.dimensions.y);//temporary
     this.background.food = this.food; // a quick hack. there has to be a better way
+	$('#canvas').html('');
     $('#canvas').append(this.renderer.view);
   }
 
