@@ -7,12 +7,11 @@ class State {
   // population is an array containing Chromosomes.
   // the chromosomes are objects containing the characteristics of a specific fish.
   // they are the objects that are maniuplated by the genetic algorithm.
-  constructor(population, callB) {
+  constructor(population) {
 
     this.fish = [];
     this.food = [];
     this.process = false;
-	this.callB = callB;
     //temporary
     let variance = 25;
     for (let i = 0; i < population.length * 5; i++) {
@@ -30,6 +29,7 @@ class State {
 
   removeFish(aFish) {
     let i = this.fish.indexOf(aFish);
+	aFish.chromosome.fitness = 0;
     if (i >= 0) {
       this.fish.splice(i, 1);
     }
@@ -73,12 +73,21 @@ class State {
     this.simulate();
   }
 
-  stop() {
+  stop(c) {
     this.process = false;
 	for (let i = 0; i < this.fish.length; i++) {
 		this.fish[i].chromosome.fitness = -this.fish[i].energy; // lower is better for the sort
 	}
-	window.Galapagos.nextGeneration();
+	// WARNING: JANK SOLUTION AHEAD.
+	// Basically, after one generation, chromosomes weren't retaining their fitness values for a reason that is not yet clear.
+	// Because of this, I'm not trusting the mutability of JavaScript Arrays and Objects, and I'm re-inserting all the chromosomes into the array.
+	// BY: Davis Haupt, 1436479686. 
+	window.Galapagos.population = [];
+	for (let i=0; i < this.fish.length; i++) {
+		window.Galapagos.population.push(this.fish[i].chromosome);
+	}
+	// END JANK SOLUTION. CARRY ON.
+	window.Galapagos.nextGeneration(c);
   }
 
   toString() {

@@ -39,7 +39,7 @@ Darwin.prototype.step = function(roundNum) {
 	this.simulate(this.population, roundNum);
 }
 
-Darwin.prototype.nextGeneration = function() {
+Darwin.prototype.nextGeneration = function(c) {
 	window.updateDisplay();
 	var parents = [];
 	if (this.truncationOrTournament)
@@ -60,7 +60,11 @@ Darwin.prototype.nextGeneration = function() {
 		nextGen = nextGen.concat(nemo); // will push all elements, if by chance it is an array because of multiple children.
 	}
 	nextGen = nextGen.slice(0, this.popSize);
+	console.table(this.population);
+	console.table(parents);
 	this.population = nextGen;
+	if (c) c();
+	
 }
 
 Darwin.prototype.mate = function(M, P) {

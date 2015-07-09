@@ -64,13 +64,21 @@ var generateChromosome = function() {
 
 var runSimulation = function(population, roundNum) {
 	if (window.S) {
-		window.S.stop();
+		window.S.stop(function() {
+			window.S = new State(population);
+			window.G = new Graphics(S);
+			G.initialize();
+			G.start();
+			S.start();
+		});
 	}
-	window.S = new State(population);
-	window.G = new Graphics(S);
-    G.initialize();
-    G.start();
-    S.start();
+	else {
+		window.S = new State(population);
+		window.G = new Graphics(S);
+		G.initialize();
+		G.start();
+		S.start();
+	}
 }
 
 var start = function(POPSIZE, PARENTS, UNIFORM, TRUNCATION) {
