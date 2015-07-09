@@ -31,7 +31,7 @@ class Chromosome {
   get eyeB() {
 	  return this.genes[8];
   }
-  get vision() {
+  get exploration() {
 	  return this.genes[9];
   }
   get alpha() {

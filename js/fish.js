@@ -2,16 +2,16 @@ let CONFIG = require('./config');
 let stateDimensions = CONFIG.dimensions;
 
 const radii = {
-	predator: 50,
+	predator: 40,
 	prey: 50,
-	food: 50
+	food: 60
 };
 
 class Fish {
 	constructor(aChromosome, aPosition = {x: 0, y:0}, aVelocity = {r: 0, t:0}, aState) {
 		this.chromosome = aChromosome;
 		this.velocity = aVelocity;
-		this.velocity.r = this.chromosome.tail / this.chromosome.weight * 500;
+		this.velocity.r = this.chromosome.tail / Math.sqrt(this.chromosome.weight) * 50;
 		this.position = aPosition;
 		this.alive = true;
 		this.life = 1; //used when fish die
@@ -21,16 +21,6 @@ class Fish {
 
 	tick(time) {
 		this.movement();
-		if (this.alive) {
-			this.position = {x: this.position.x + time/1000*this.velocity.r*Math.sin(this.velocity.t), y: this.position.y - time/1000*this.velocity.r*Math.cos(this.velocity.t)};
-			this.eat();
-			this.energy -= time/500000 * this.chromosome.tail*this.chromosome.tail*this.chromosome.tail;
-			if (this.energy < 0) {
-				this.kill();
-			}
-		} else {
-			this.life -= time/1000;
-		}
 		if(this.position.x > stateDimensions.x && this.velocity.t < Math.PI) {
 			this.position.x = stateDimensions.x;
 			this.velocity.t = Math.PI*2 - this.velocity.t;
@@ -48,7 +38,17 @@ class Fish {
 			if(this.velocity.t < 0) {
 				this.velocity.t += Math.PI*2;
 			}
-		}		
+		}
+		if (this.alive) {
+			this.position = {x: this.position.x + time/1000*this.velocity.r*Math.sin(this.velocity.t), y: this.position.y - time/1000*this.velocity.r*Math.cos(this.velocity.t)};
+			this.eat();
+			this.energy -= time/500000 * Math.pow(this.chromosome.tail, 2.5);
+			if (this.energy < 0) {
+				this.kill();
+			}
+		} else {
+			this.life -= time/1000;
+		}
 	}
 
 	movement() {
@@ -65,7 +65,7 @@ class Fish {
 		}
 
 		for (let prey of this.smallFish()){
-			let thisPriority = prey.chromosome.weight * this.chromosome.alpha / Fish.distance(this.position, prey.position);
+			let thisPriority = prey.energy * this.chromosome.alpha / Fish.distance(this.position, prey.position);
 			if (thisPriority > biggestPriority) {
 				biggestPriority = thisPriority;
 				theta = Fish.angle(this.position, prey.position);
@@ -81,6 +81,8 @@ class Fish {
 		}
 		if (biggestPriority != 0) {
 			this.velocity.t = theta;
+		} else if (Math.random() < this.chromosome.exploration) {
+			this.velocity.t = Math.random() * 2*Math.PI;
 		}
 	}
 

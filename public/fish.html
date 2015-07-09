@@ -34,6 +34,7 @@
 				A typical chromosome may look like this:
 			</p>
 			<p>
+<<<<<<< HEAD
 				[50, 20, 5, 30, 2, 0, 100, 50, 240, 100, 50]
 			</p>
 			<p>
@@ -78,6 +79,56 @@
 			<p>
 				Aside from these dimensional values, the chromosome also contains several values
 				that affect a fish's behavior. ...
+=======
+				[250, 2, 8, 127, 63, 191, 191, 127, 63, 0.001, 3, 6, 2]
+			</p>
+			<p>
+				The first three values represent the dimensions of the fish, in this order:<br>
+				1: Body Weight<br>
+				2: Body Length-Width Ratio<br>
+				3: Tail Length
+			</p>
+			<p>
+				Because the length-width ratio is 2, the length of the fish will be two times the width of the fish. The weight is the length times the width, so this fish will have a length of about 22px and a width of about 11px. Its tail would extend 8px behind its body.
+				This fish would look like this:
+			</p>
+			<figure>
+				<img src="fishA.png">
+				<figcaption>[250, 2, 8]</figcaption>
+			</figure>
+			<p>
+				The shape of the fish depends entirely on these three values. Changing these values produces different fish shapes, or "<a class="inline" href="https://en.wikipedia.org/wiki/Phenotype" target="_blank">phenotypes</a>." Here are several examples of fish and the first three values in their chromosome:
+			</p>
+			<figure>
+				<img src="fishB.png" alt="<><">
+				<figcaption>[200, 1.5, 5]</figcaption>
+			</figure>
+			<figure>
+				<img src="fishC.png" alt="<><">
+				<figcaption>[300, 4, 15]</figcaption>
+			</figure>
+			<figure>
+				<img src="fishD.png" alt="<><">
+				<figcaption>[250, 1, 15]</figcaption>
+			</figure>
+			<figure>
+				<img src="fishE.png" alt="<><">
+				<figcaption>[400, 2, 10]</figcaption>
+			</figure>
+			<figure>
+				<img src="fishF.png" alt="<><" />
+				<figcaption>[150, 0.5, 8]</figcaption>
+			</figure>
+			<p>
+				The next six values affect a fish's color. The first three represent the RGB values of the fish body, and the next three represent the RGB values of the fish's secondary color. The secondary color is what's used for the outline around the fish and for the fish's eye. Each of these values is on a scale from 0 to 255. A fish with the first six values of [250, 2, 8, 255, 0, 0, 0, 0, 255] would have a bright red body and a bright blue outline.
+			</p>
+			<p>
+				Aside from these dimensional values, the chromosome also contains several values
+				that affect a fish's behavior. The tenth value in the chromosome is the "exploration" value. This means that if the fish sees nothing of interest nearby, this is the probability each frame that the fish will pick a random direction to travel. If this value is too low, the fish will only travel in straight lines; if it is too high, the fish may practically spin in circles.
+			</p>
+			<p>
+				The final three values are the fish's priorities for various goals. The first goal is to eat small fish, the second goal is to avoid being eaten by big fish, and the third goal is to eat food. Each frame, each fish makes a decision about which direction to travel. If one of these three values is very high, the fish will prioritize that goal above all else.
+>>>>>>> 42c1b5cc7d635b1b396a813c8d59376d2ab0d19d
 			</p>
 		</section>
 		<br class="clear">
