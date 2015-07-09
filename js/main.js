@@ -42,6 +42,7 @@ $(document).ready(() => {
 	  window.Galapagos.step();
 	  return false;
   });
+  $('input#submit').click();
   $("#step").click(function(e) {
 	  //window.S.stop();
 	  window.Galapagos.step();
