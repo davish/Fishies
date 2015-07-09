@@ -81,6 +81,8 @@ class Fish {
 		}
 		if (biggestPriority != 0) {
 			this.velocity.t = theta;
+		} else if (Math.random() < this.chromosome.exploration) {
+			this.velocity.t = Math.random() * 2*Math.PI;
 		}
 	}
 
