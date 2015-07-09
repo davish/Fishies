@@ -38,9 +38,9 @@ var randomMutateChromosome = function(F) {
 
 var generateChromosome = function() {
 	var c = [
-				250*Algorithms.randomWithinPercent(0),
-				2*Algorithms.randomWithinPercent(0),
-				8*Algorithms.randomWithinPercent(0),
+				250*Algorithms.randomWithinPercent(50),
+				2*Algorithms.randomWithinPercent(50),
+				8*Algorithms.randomWithinPercent(50),
 				256 * Math.random(),
 				256 * Math.random(),
 				256 * Math.random(),
