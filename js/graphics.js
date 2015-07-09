@@ -78,6 +78,7 @@ class Graphics {
         sprite.rotation = data.velocity.t;
       } else {
         sprite.alpha = 0;
+        this.stage.removeChild(sprite);
         indicesToRemove.push(this.entities.indexOf(f));
       }
     }
@@ -88,6 +89,7 @@ class Graphics {
     for (let f of this.food) {
       if (this.state.food.indexOf(f.data) == -1) {
         f.sprite.alpha = 0;
+        this.stage.removeChild(f.sprite);
         this.food.splice(this.food.indexOf(f), 1);
       }
     }

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Genetic Fishbowl</title>
+  <link rel="stylesheet" type="text/css" href="style.css"></link>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+  <script src="main.min.js"></script>
+</head>
+<body onload="init()">
+  <header>
+    <h1>The Genetic Fishbowl</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="./index.html">The Fishbowl</a></li>
+			<li><a href="./introduction.html">How to Play</a></li>
+			<li><a href="./fish.html">The Fish</a></li>
+      <li><a href="./energy.html">Energy</a></li>
+			<li><a href="./selection.html">Selection</a></li>
+			<li><a href="./crossover.html">Crossover</a></li>
+			<li><a href="./mutation.html">Mutation</a></li>
+    </ul>
+  </nav>
+  <div class="content">
+    <section>
+      <p>
+        <a class="inline" href="https://en.wikipedia.org/wiki/Crossover_(genetic_algorithm)" target="_blank">Crossover</a>, also known as recombination, is the process that mixes two chromosomes and results in two new chromosomes, each of which is a hybrid of the original two. This process is meant to simulate the biological process of chromosomal crossover, where matching sections of two chromosomes break and reconnect on the opposite chromosome. In our algorithm, we use one of three methods to simulate this process.
+      </p>
+      <h3>One-Point Crossover</h3>
+      <p>
+        With one-point crossover, a single point is chosen at random as the crossover point. All values past this point are swapped. For example:
+      </p>
+      <p>
+        [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]<br>
+        [88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88]<br>
+        <br>
+        might become...<br>
+        <br>
+        [10, 10, 10, 10, 10, 10, 10, 10, 88, 88, 88, 88]<br>
+        [88, 88, 88, 88, 88, 88, 88, 88, 10, 10, 10, 10]<br>
+      </p>
+      <h3>Two-Point Crossover</h3>
+      <p>
+        Two-point crossover is very similar, except that <em>two</em> random crossover points are chosen, and all values between those two points are swapped. For example:
+      </p>
+      <p>
+        [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]<br>
+        [88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88]<br>
+        <br>
+        might become...<br>
+        <br>
+        [10, 10, 10, 88, 88, 88, 88, 88, 10, 10, 10, 10]<br>
+        [88, 88, 88, 10, 10, 10, 10, 10, 88, 88, 88, 88]<br>
+      </p>
+      <h3>Uniform Crossover</h3>
+      <p>
+        Notice that both of these crossover methods are biased; that is, they are affected by the order of the values in the chromosome. Two values that are closer to each other on the chromosome are less likely to be separated than values that are further apart. This may be beneficial; for example, when the behavior of a fish depends on the sequence of values that define its behavior, a one-point crossover would have a greater chance of keeping the sequence of behavior genes. When this mechanic is not desired, uniform crossover may be beneficial. Uniform crossover gives each value a 50% chance of crosssing over. For example:
+      </p>
+      <p>
+        [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]<br>
+        [88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88, 88]<br>
+        <br>
+        might become...<br>
+        <br>
+        [10, 88, 88, 10, 88, 10, 88, 88, 88, 10, 88, 10]<br>
+        [88, 10, 10, 88, 10, 88, 10, 10, 10, 88, 10, 88]<br>
+      </p>
+      <p>
+        Note that regardless of the crossover method, the crossover rate defines the probability that a pair of two parents will mate. If set at 70%, that means that 30% of mating pairs will produce chromosomes identical to the original two.
+      </p>
+    </section>
+    <br class="clear">
+  </div>
+  <footer>
+    Created by Finn Voichick, Kevin Wang, and Davis Haupt<br>
+    This project is <a class="inlineLight" href="https://github.com/dbh937/Fishies" target="_blank">open source</a>.
+  </footer>
+</body>
+</html>
