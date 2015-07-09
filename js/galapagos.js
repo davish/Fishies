@@ -19,18 +19,24 @@ var gaussianMutateChromosome = function(F) {
 		else if (i < 9) {
 			F.genes[i] = Math.min(F.genes[i] * Algorithms.randomWithinPercent(VARIANCE), 255);
 		}
+		else if (i > 9 && i < 13) {
+			F.genes[i] = F.genes[i] * Algorithms.randomWithinPercent(VARIANCE);
+		}
 	}
 }
 
 var randomMutateChromosome = function(F) {
-	var defaults = [250, 2, 8];
+	var defaults = [250, 2, 8, 3, 6, 2];
 	for (let i=0; i<F.chromsome.length; i++) {
 		if (Math.random() * 100 < MUTATION_RATE) {
 			if (i < 3) {
-				F.genes[i] = defaults[i] * randomWithinPercent(VARIANCE);
+				F.genes[i] = defaults[i] * randomWithinPercent(75);
 			}
 			else if (i < 9) {
 				F.genes[i] = 256 * Math.random();
+			}
+			else if (i > 9 && i < 13) {
+				F.genes[i] = defaults[i-7] * randomWithinPercent(75)
 			}
 		}
 	}
