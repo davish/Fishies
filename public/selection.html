@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Genetic Fishbowl</title>
+  <link rel="stylesheet" type="text/css" href="style.css"></link>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
+  <script src="main.min.js"></script>
+</head>
+<body onload="init()">
+  <header>
+    <h1>The Genetic Fishbowl</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="./index.html">The Fishbowl</a></li>
+			<li><a href="./introduction.html">How to Play</a></li>
+			<li><a href="./fish.html">The Fish</a></li>
+      <li><a href="./energy.html">Energy</a></li>
+			<li><a href="./selection.html">Selection</a></li>
+			<li><a href="./crossover.html">Crossover</a></li>
+			<li><a href="./mutation.html">Mutation</a></li>
+    </ul>
+  </nav>
+  <div class="content">
+    <section>
+      <p>
+        <a class="inline" href="https://en.wikipedia.org/wiki/Selection_(genetic_algorithm)" target="_blank">Selection</a> may be the most important part of the genetic algorithm. This stage is initiated when either a fish dies in continuous mode or a generation ends in iterative mode. In this stage, each fish is given a fitness score. The <a class="inline" href="https://en.wikipedia.org/wiki/Fitness_function" target="_blank">fitness function</a> is a bit different depending on what Generation Mode you are in.
+      </p>
+      <h3>Iterative Mode</h3>
+      <p>
+        If you are in iterative mode, the fitness score is based on how many energy points a fish has. Energy points are gained when fish eat food, but the fish slowly lose points as they swim around. If a fish reaches zero energy points, it dies, and has a fitness score of zero.
+      </p>
+      <h3>Continuous Mode</h3>
+      <p>
+        In continuous mode, a fish's fitness score is based on how long it has been alive. The fish in this mode will thus evolve to live as long as possible.
+      </p>
+      <p>
+        The selection algorithm selects certain fish to survive to the next generation based on their fitness scores. In iterative mode, an entire population of fish is picked to survive after each generation. In continuous mode, generations are not separated, so a new fish is generated whenever a fish dies. Because of this, two parents must be selected whenever a fish dies. Three selection algorithms can be used:
+      </p>
+      <h3><a class="inline" href="https://en.wikipedia.org/wiki/Truncation_selection" target="_blank">Truncation</a></h3>
+      <p>
+        The truncation approach is the simplest one. The fish are ranked by their fitness scores, and the best half of the fish are selected for the next generation. While this method may quickly improve the average fish, it also may cause the fish to later cease to improve.
+      </p>
+      <h3>Roulette-Wheel Selection or <a class="inline" href="https://en.wikipedia.org/wiki/Fitness_proportionate_selection" target="_blank">Fitness Proportional Selection</a></h3>
+      <p>
+        Roulette-wheel selection has a random chance of selecting each fish. The probability that the algorithm will select a fish is proportional to that fish's fitness score. In other words, if one fish has a fitness score of 50 and another has a fitness score of 100, each fish may be selected, but the second one will be twice as likely as the first.
+      </p>
+      <h3><a class="inline" href="https://en.wikipedia.org/wiki/Tournament_selection" target="_blank">Tournament Selection</a></h3>
+      <p>
+        Tournament selection is similar to roulette-wheel selection in that there is a random probability involved, but it is a very different algorithm. A random subpopulation of fish are selected from the existing population, and the best fitness score is selected from this tournament population. The number of fish chosen for the tournament population can be adjusted. Note that a higher tournament population will lead to a lower probability for low-scoring individuals to be selected.
+      </p>
+    </section>
+    <br class="clear">
+  </div>
+  <footer>
+    Created by Finn Voichick, Kevin Wang, and Davis Haupt<br>
+    This project is <a class="inlineLight" href="https://github.com/dbh937/Fishies" target="_blank">open source</a>.
+  </footer>
+</body>
+</html>
