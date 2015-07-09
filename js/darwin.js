@@ -40,6 +40,7 @@ Darwin.prototype.step = function(roundNum) {
 }
 
 Darwin.prototype.nextGeneration = function() {
+	window.updateDisplay();
 	var parents = [];
 	if (this.truncationOrTournament)
 		parents = this.truncate(this.population);

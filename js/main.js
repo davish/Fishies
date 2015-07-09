@@ -46,6 +46,11 @@ $(document).ready(() => {
 	  //window.S.stop();
 	  window.Galapagos.step();
   });
+  window.count = 0;
+  window.updateDisplay = function() {
+	  window.count++;
+	  $("#display").val(window.count);
+  }
 });
 
 window.stopSimulation = () => {
