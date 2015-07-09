@@ -21,6 +21,7 @@ class State {
 	  for (let i = 0; i < population.length; i++) {
 		  this.fish.push(new Fish(population[i], {x: 800 * Math.random(), y: 600 * Math.random()}, {r: 20, t: 2*Math.PI * Math.random()}, this));
 	  }
+	this.pS = this.fish.length;
   }
 
   addFish(aFish) {
@@ -53,7 +54,7 @@ class State {
         this.removeFish(f);
       }
     }
-	if (this.food.length < 1)
+	if (this.food.length < 1 || this.fish.length < (this.pS/3))
 		window.Galapagos.step();
   }
 
