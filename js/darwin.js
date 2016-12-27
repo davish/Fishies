@@ -1,5 +1,5 @@
 /*
- *
+ * 
  * @author Davis Haupt
  * Copyright (c) Under the MIT License
 
