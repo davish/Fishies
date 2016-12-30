@@ -1,18 +1,18 @@
 /*
- * 
+ *
  * @author Davis Haupt
  * Copyright (c) Under the MIT License
- 
+
  * Genetic algorithm originally for the Fishies project with Kevin Wang and Finn Voichick.
  * Goal is to make this as general as possible so as to be usable for other projects.
  */
 
  /**
 	fitness(organism) is a function that takes an organism and calculates its fitness.
-	mate(mom, dad) takes two organisms and returns a child that contains part of each organism's chromosomes.
+	mate(mom, dad) takes two organisms and returns a child that contains part of each organism's geness.
 	mutate(organism) takes an organism and randomly edits its genome.
 	generateOrganism() generates a random starting organism and returns it to be added to the population.
-	simulate(population[, i]) takes an array of the population and runs the simulation for one generation. 
+	simulate(population[, i]) takes an array of the population and runs the simulation for one generation.
 		optionally takes an int with the gen number for the purposes of the simulation.
 	popSize is an int that represents the size of the population that is simulated.
 	survivalRate is an int (smaller than popSize) that represents how many organisms of the previous generation moves on to the next generation.
@@ -36,6 +36,7 @@ function Darwin(organismObj, fitness, mutate, generateOrganism, simulate, popSiz
 	}
 }
 Darwin.prototype.step = function(roundNum) {
+	// this.nextGeneration();
 	this.simulate(this.population, roundNum);
 }
 
@@ -45,7 +46,7 @@ Darwin.prototype.nextGeneration = function() {
 		parents = this.truncate(this.population);
 	else
 		parents = this.tournament(this.population);
-	
+
 	var nextGen = [];
 	while (nextGen.length < this.popSize) {
 		// create two new organisms from two random parents.
@@ -59,7 +60,6 @@ Darwin.prototype.nextGeneration = function() {
 		nextGen = nextGen.concat(nemo); // will push all elements, if by chance it is an array because of multiple children.
 	}
 	nextGen = nextGen.slice(0, this.popSize);
-	console.log("hi");
 	this.population = nextGen;
 }
 
@@ -68,10 +68,10 @@ Darwin.prototype.mate = function(M, P) {
 		var pivot = Math.floor(Math.random() * M.genes.length);
 		var X1 = M.genes.slice(0, pivot);
 		var Y1 = P.genes.slice(pivot);
-		
+
 		var Y2 = P.genes.slice(0, pivot);
 		var X2 = M.genes.slice(pivot);
-		
+
 		var nemo = new this.Organism(X1.concat(Y1));
 		var marlinjr = new this.Organism(Y2.concat(X2));
 		return [nemo, marlinjr];
@@ -90,7 +90,7 @@ Darwin.prototype.mate = function(M, P) {
 		}
 		return [new this.Organism(C1), new this.Organism(C2)];
 	}
-	
+
 }
 
 // For the "Hello World" example, truncation finds a solution in ~120 generations.

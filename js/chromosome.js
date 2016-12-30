@@ -4,6 +4,10 @@ class Chromosome {
 	this.fitness = 0; // obvi they haven't proven themselves yet.
   }
 
+  get chromosome() {
+    return this.genes;
+  }
+  
   get weight(){
 	  return this.genes[0];
   }

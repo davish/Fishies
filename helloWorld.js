@@ -1,4 +1,4 @@
-var Darwin = require("./darwin.js").Darwin;
+var Darwin = require("./js/darwin.js").Darwin;
 
 // TODO: change these functions to generator functions that return functions, so as to make the calcFitness and mutateWord functions be more generic
 // match with diff strings and diff mutation rates
@@ -38,37 +38,21 @@ var mutateWord = function(W) {
 }
 
 var runSimulation = function(population, roundNum) {
-//	console.log("Round: " + roundNum);
-//	console.log(population.length);
-//	console.log(population.length);
-
 	for (var i=0; i < population.length; i++) {
 		if (calcFitness(population[i]) < 1) {
 			console.log(population[i].toString() + " | fitness: " + calcFitness(population[i]) + " | round: " + roundNum);
 			break;
 		}
 	}
-	//console.log("\n GENERATION OVER \n")
+	console.log("\n GENERATION OVER \n")
 }
 
-var GENERATIONS = 50;
+var GENERATIONS = 100;
 var POPSIZE = 100;
 var PARENTS = 6;
 
 var d = new Darwin(Word, calcFitness, mutateWord, generate, runSimulation, POPSIZE, PARENTS, false, true);
-/*var pop = [
-			new Word('Hello World'.split('')), 
-			new Word('Hello Wdrld'.split('')), 
-			new Word('Hellp Wdrdd'.split('')),
-			generate(),
-			generate(),
-			generate(),
-			generate(),
-			generate(),
-			generate(),
-			generate()
-		];
-console.log(d.tournament(pop))
-	*/	
+
+// console.log(d.population[1])
 for (var i=0; i < GENERATIONS; i++)
 	d.step(i);

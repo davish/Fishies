@@ -61,10 +61,14 @@ var runSimulation = function(population, roundNum) {
 		window.S.stop();
 	}
 	window.S = new State(population);
+	if (window.G) {
+		window.G.background.destroy();
+		window.G.stage.destroy();
+	}
 	window.G = new Graphics(S);
-    G.initialize();
-    G.start();
-    S.start();
+  G.initialize();
+  G.start();
+  S.start();
 }
 
 var start = function(POPSIZE, PARENTS, UNIFORM, TRUNCATION) {
